@@ -1,23 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Solicitacao } from '../../../models/solicitacao.model';
+import { SolicitacoesService } from '../../../services/solicitacoes.service';
 import { SolicitacaoItemComponent } from '../solicitacao-item/solicitacao-item';
-import { MOCK_SOLICITACOES } from '../../../mocks/solicitacoes.mock';
 
 @Component({
   selector: 'app-solicitacao-lista',
+  standalone: true,
   imports: [CommonModule, SolicitacaoItemComponent],
   templateUrl: './solicitacao-lista.html',
   styleUrl: './solicitacao-lista.scss'
 })
 export class SolicitacaoListaComponent implements OnInit {
-  solicitacoes: Solicitacao[] = [];
-  isLoading = true;
 
-  ngOnInit(): void {
-    setTimeout(() => {
-      this.solicitacoes = MOCK_SOLICITACOES;
-      this.isLoading = false;
-    }, 1500);
+  constructor(public service: SolicitacoesService) {}
+
+  ngOnInit() {
+    this.service.carregarSolicitacoes();
   }
 }

@@ -67,23 +67,29 @@
 }
 
 .status {
-  &--pendente {
-    background-color: #fef3c7;
-    color: #92400e;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+
+  &.card__status--pendente {
+    background-color: #fff3e0;
+    color: #ef6c00;
   }
 
-  &--analise {
-    background-color: #dbeafe;
-    color: #1e40af;
+  &.card__status--analise {
+    background-color: #e3f2fd;
+    color: #1565c0;
   }
 
-  &--aprovado {
-    background-color: #d1fae5;
-    color: #065f46;
+  &.card__status--aprovado {
+    background-color: #e8f5e9;
+    color: #2e7d32;
   }
 
-  &--recusado {
-    background-color: #fee2e2;
-    color: #991b1b;
+  &.card__status--recusado {
+    background-color: #ffeeee;
+    color: #c62828;
   }
 }

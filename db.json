@@ -1,0 +1,20 @@
+{
+  "solicitacoes": [
+    {
+      "id": 1,
+      "cliente": "Maria Silva",
+      "documento": "123.456.789-00",
+      "valor": 5000,
+      "status": "pendente",
+      "dataSolicitacao": "2026-04-01T10:00:00"
+    },
+    {
+      "id": 2,
+      "cliente": "João Souza",
+      "documento": "987.654.321-00",
+      "valor": 12000,
+      "status": "aprovado",
+      "dataSolicitacao": "2026-04-02T14:00:00"
+    }
+  ]
+}
