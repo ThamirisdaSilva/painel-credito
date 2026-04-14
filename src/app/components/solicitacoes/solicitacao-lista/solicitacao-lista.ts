@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SolicitacoesService } from '../../../services/solicitacoes.service';
 import { SolicitacaoItemComponent } from '../solicitacao-item/solicitacao-item';
+import { SolicitacoesService } from '../../../services/graphql.service';
 
 @Component({
   selector: 'app-solicitacao-lista',
   standalone: true,
   imports: [CommonModule, SolicitacaoItemComponent],
   templateUrl: './solicitacao-lista.html',
-  styleUrl: './solicitacao-lista.scss'
+  styleUrls: ['./solicitacao-lista.scss']
 })
 export class SolicitacaoListaComponent implements OnInit {
 

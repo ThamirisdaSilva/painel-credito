@@ -66,30 +66,74 @@
   }
 }
 
-.status {
+.card {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 16px;
+}
+
+.card__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card__body {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 16px;
+}
+
+.card__info {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.card__label {
+  font-size: 12px;
+  color: #888;
+}
+
+.card__value {
+  font-size: 14px;
+}
+
+.card__value--destaque {
+  font-weight: bold;
+}
+
+.card__cliente {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+/* 🔥 BASE DO STATUS */
+.card__status {
   padding: 4px 12px;
   border-radius: 20px;
   font-size: 12px;
   font-weight: 600;
   text-transform: uppercase;
+}
 
-  &.card__status--pendente {
-    background-color: #fff3e0;
-    color: #ef6c00;
-  }
+.card__status--pendente {
+  background-color: #fff3e0;
+  color: #ef6c00;
+}
 
-  &.card__status--analise {
-    background-color: #e3f2fd;
-    color: #1565c0;
-  }
+.card__status--analise {
+  background-color: #e3f2fd;
+  color: #1565c0;
+}
 
-  &.card__status--aprovado {
-    background-color: #e8f5e9;
-    color: #2e7d32;
-  }
+.card__status--aprovado {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+}
 
-  &.card__status--recusado {
-    background-color: #ffeeee;
-    color: #c62828;
-  }
+.card__status--recusado {
+  background-color: #ffeeee;
+  color: #c62828;
 }

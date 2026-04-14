@@ -1,27 +1,28 @@
 <div class="card">
-  <div class="header">
-    <h3>{{ solicitacao.cliente }}</h3>
+  <div class="card__header">
+    <h3 class="card__cliente">{{ solicitacao.cliente }}</h3>
 
-    <span class="status" [ngClass]="solicitacao.statusClass">
+    <span class="card__status" [ngClass]="solicitacao.statusClass">
       {{ solicitacao.statusLabel }}
     </span>
   </div>
 
-  <div class="content">
-    <div class="col">
-      <span>Documento</span>
-      <span>Valor Solicitado</span>
-      <span>Data da Solicitação</span>
+  <div class="card__body">
+    <div class="card__info">
+      <span class="card__label">Documento</span>
+      <span class="card__value">{{ solicitacao.documento }}</span>
     </div>
 
-    <div class="col right">
-      <span>{{ solicitacao.documento }}</span>
-
-      <span class="valor">
+    <div class="card__info">
+      <span class="card__label">Valor Solicitado</span>
+      <span class="card__value card__value--destaque">
         {{ solicitacao.valor | currency:'BRL':'symbol':'1.2-2':'pt-BR' }}
       </span>
+    </div>
 
-      <span>
+    <div class="card__info">
+      <span class="card__label">Data da Solicitação</span>
+      <span class="card__value">
         {{ solicitacao.dataSolicitacao | date:'dd/MM/yyyy' }}
       </span>
     </div>

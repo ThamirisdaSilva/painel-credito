@@ -977,7 +977,7 @@ export const routes: Routes = [
 ];
 ```
 
-Subir aplicaçao branch - aula2-http
+Subir aplicaçao branch - aula2
 
 ---
 

@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SolicitacaoViewModel } from '../../../services/solicitacoes.service';
+import { SolicitacaoViewModel } from '../../../services/graphql.service';
 
 @Component({
   selector: 'app-solicitacao-item',
@@ -10,7 +10,5 @@ import { SolicitacaoViewModel } from '../../../services/solicitacoes.service';
   styleUrls: ['./solicitacao-item.scss']
 })
 export class SolicitacaoItemComponent {
-
   @Input({ required: true }) solicitacao!: SolicitacaoViewModel;
-
 }
