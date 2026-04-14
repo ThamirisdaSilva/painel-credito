@@ -12,7 +12,7 @@ export interface SolicitacaoViewModel extends Solicitacao {
 })
 export class SolicitacoesService {
 
-  private API_URL = 'http://localhost:3000/solicitacoes';
+  private API_URL = 'http://localhost:3001/solicitacoes';
 
   constructor(private http: HttpClient) {}
 
