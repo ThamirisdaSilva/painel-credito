@@ -1,70 +1,77 @@
 .card {
   background: #ffffff;
   border-radius: 12px;
-  padding: 16px;
-  margin-bottom: 16px;
+  padding: 1.25rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+  border: 1px solid #e8e8e8;
+  &:hover {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+    transform: translateY(-2px);
+  }
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid #f0f0f0;
+  }
+  &__cliente {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #1a1a2e;
+    margin: 0;
+  }
+  &__status {
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  &__body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  &__info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  &__label {
+    font-size: 0.85rem;
+    color: #6b7280;
+  }
+  &__value {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #374151;
+    &--destaque {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #1a1a2e;
+    }
+  }
 }
-
-.card__header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.card__body {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 16px;
-}
-
-.card__info {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.card__label {
-  font-size: 12px;
-  color: #888;
-}
-
-.card__value {
-  font-size: 14px;
-}
-
-.card__value--destaque {
-  font-weight: bold;
-}
-
-.card__cliente {
-  font-size: 16px;
-  font-weight: 600;
-}
-
 .card__status {
-  padding: 4px 12px;
-  border-radius: 20px;
-  font-size: 12px;
-  font-weight: 600;
-  text-transform: uppercase;
+  &--pendente {
+    background-color: #fef3c7;
+    color: #92400e;
+  }
+  &--analise {
+    background-color: #dbeafe;
+    color: #1e40af;
+  }
+  &--aprovado {
+    background-color: #d1fae5;
+    color: #065f46;
+  }
+  &--recusado {
+    background-color: #fee2e2;
+    color: #991b1b;
+  }
 }
-
-.card__status--pendente {
-  background-color: #fff3e0;
-  color: #ef6c00;
-}
-
-.card__status--analise {
-  background-color: #e3f2fd;
-  color: #1565c0;
-}
-
-.card__status--aprovado {
-  background-color: #e8f5e9;
-  color: #2e7d32;
-}
-
-.card__status--recusado {
-  background-color: #ffeeee;
-  color: #c62828;
-}
+ 

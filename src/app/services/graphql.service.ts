@@ -35,12 +35,12 @@ export class SolicitacoesService {
           }
         }
       `,
-      fetchPolicy: 'no-cache'
+      fetchPolicy: 'cache-first'
     }).subscribe({
       next: (result) => {
         const data = result.data?.solicitacoes || [];
         const viewModel = data.map(s => this.mapToViewModel(s));
-        this.solicitacoes.set([...viewModel]);
+        this.solicitacoes.set(viewModel);
         this.loading.set(false);
       },
       error: () => {
@@ -57,14 +57,14 @@ export class SolicitacoesService {
       pendente: 'card__status--pendente',
       em_analise: 'card__status--analise',
       aprovado: 'card__status--aprovado',
-      recusado: 'card__status--recusado'
+      reprovado: 'card__status--recusado'
     };
 
     const labelMap: Record<string, string> = {
       pendente: 'Pendente',
       em_analise: 'Em Análise',
       aprovado: 'Aprovado',
-      recusado: 'Recusado'
+      reprovado: 'Recusado'
     };
 
     return {
