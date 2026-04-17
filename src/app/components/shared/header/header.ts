@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, HostListener, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -10,4 +10,21 @@ import { CommonModule } from '@angular/common';
 })
 export class HeaderComponent {
   @Input() title = '';
+
+  isOffline = !navigator.onLine;
+
+  ngOnInit(): void {
+    this.isOffline = !navigator.onLine;
+  }
+
+  @HostListener('window:offline')
+  onOffline() {
+    this.isOffline = true;
+  }
+
+  @HostListener('window:online')
+  onOnline() {
+    this.isOffline = false;
+  }
+
 }
