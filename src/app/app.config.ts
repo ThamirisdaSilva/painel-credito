@@ -1,4 +1,4 @@
-import { ApplicationConfig, inject, LOCALE_ID } from '@angular/core';
+import { ApplicationConfig, inject, LOCALE_ID, isDevMode } from '@angular/core';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { provideRouter } from '@angular/router';
 import { routes } from './app.routes';
@@ -10,6 +10,7 @@ import { InMemoryCache } from '@apollo/client/core';
 import { registerLocaleData } from '@angular/common';
 import localePt from '@angular/common/locales/pt';
 import { authInterceptor } from './interceptors/auth.interceptor';
+import { provideServiceWorker } from '@angular/service-worker';
 
 registerLocaleData(localePt);
 
@@ -35,6 +36,15 @@ export const appConfig: ApplicationConfig = {
         }),
         cache: new InMemoryCache()
       };
-    })
+    }), provideServiceWorker('ngsw-worker.js', {
+            enabled: !isDevMode(),
+            registrationStrategy: 'registerWhenStable:30000'
+          }), provideServiceWorker('ngsw-worker.js', {
+            enabled: !isDevMode(),
+            registrationStrategy: 'registerWhenStable:30000'
+          }), provideServiceWorker('ngsw-worker.js', {
+            enabled: !isDevMode(),
+            registrationStrategy: 'registerWhenStable:30000'
+          })
   ]
 };
