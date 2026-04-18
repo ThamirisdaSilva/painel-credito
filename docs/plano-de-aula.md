@@ -132,149 +132,173 @@ O objetivo é que, ao final, os alunos compreendam não apenas como construir in
 
 ---
 
-## AULA 6 — CODE QUALITY, AUTOMAÇÃO E CODE REVIEW
+## AULA 6 — Evolução e Padronização do Frontend
 
 ### Temas
-- ESLint: configuração para Angular (`@angular-eslint`), regras essenciais
-- Prettier: formatação automática, integração com ESLint (`eslint-config-prettier`)
-- Husky + lint-staged: hooks de pre-commit para garantir padrão antes do push
-- Conventional Commits (padrão de mensagens)
-- Code Review: boas práticas, checklist para PRs Angular, como dar feedback
-- Clean Code: nomes significativos, funções pequenas, early return
-- Design Patterns: Facade, Repository, Strategy, Smart/Dumb Components
-- SOLID principles aplicados ao Angular:
-  - Single Responsibility (componente/service faz uma coisa)
-  - Open/Closed (extensibilidade via composição)
-  - Liskov Substitution (contratos com interfaces TS)
-  - Interface Segregation (interfaces enxutas)
-  - Dependency Inversion (`InjectionToken`, abstrações)
-- Organização por feature, estrutura de pastas
+- Evolução de sistemas frontend (de tela simples para sistema com múltiplas páginas)
+- Roteamento no Angular (`Router`, `ActivatedRoute`)
+- Componentização por feature (lista, detalhe, filtro, busca, resumo)
+- Comunicação entre componentes (`@Input`, `@Output`)
+- Separação de responsabilidades (na prática)
+- Ações de negócio no frontend (aprovar/reprovar)
+- Padronização de código (ESLint, Prettier)
+- Automação básica com Husky (pre-commit)
 
 ### Projeto
-- Instalar e configurar ESLint + Prettier
-- Configurar Husky com hook de pre-commit (lint + format)
-- Refatorar estrutura para feature-based
-- Criar `SolicitacoesFacade` (Facade Pattern)
-- Separar componentes em Smart (container) e Dumb (apresentação)
-- Aplicar SRP: extrair lógica para services dedicados
-- Criar `InjectionToken` para abstrair implementações
-- Exercício de code review em dupla com checklist
+- Criar nova página de detalhe:
+- Configurar rota
+- Implementar navegação:
+- Capturar `id` com `ActivatedRoute`
+- Buscar dados da solicitação no service
+- Implementar ações na tela de detalhe:
+  - botão "Aprovar"
+  - botão "Reprovar"
+- Criar métodos no componente
+- Implementar método no service
+- Atualizar estado da aplicação após ação
+- Criar componentes na lista
+- Evoluir `solicitacao-lista`
+- Implementar comunicação entre componentes
+- Adicionar interação no `solicitacao-item`
+- Padronizar código
+- Configurar tooling
+
 
 ---
 
-## AULA 7 — OBSERVABILIDADE
+## AULA 7 — API Design, REST e GraphQL (Convidado)
 
 ### Temas
-- Os 3 pilares: logs, métricas, traces
-- Logging estruturado: serviço centralizado, níveis (debug, info, warn, error)
-- Error Tracking com Sentry: setup, captura automática, source maps, breadcrumbs
-- Session Replay com LogRocket: visão geral, quando usar, privacidade
-- `ErrorHandler` customizado no Angular (captura global)
-- HTTP Error Interceptor (centralizar tratamento de erros de API)
-- Performance Monitoring (Sentry Performance, Web Vitals em produção)
+- REST vs GraphQL
+- Estrutura de APIs
+- Contratos de dados
+- Boas práticas de design de API
 
 ### Projeto
-- Criar `LoggerService` com output estruturado
-- Implementar `GlobalErrorHandler` (extends `ErrorHandler`)
-- Criar `ErrorInterceptor` para captura centralizada de erros HTTP
-- Configurar Sentry (DSN de teste) e capturar primeiro erro
-- Simular falhas na API e validar captura no dashboard
-- Implementar toast/snackbar de notificação de erro ao usuário
+- Analisar exemplos de APIs REST e GraphQL
+- Comparar payloads e flexibilidade de dados
+- Identificar boas e más práticas em contratos de API
+- Relacionar decisões de backend com impacto no frontend
 
 ---
 
-## AULA 8 — CACHING STRATEGIES
+## AULA 8 — Arquitetura, SOLID e Segurança (Convidado)
 
 ### Temas
-- Browser Storage: `localStorage`, `sessionStorage`, `IndexedDB` (quando usar cada um)
-- Cache em memória com RxJS: `shareReplay`, `BehaviorSubject` como cache reativo
-- Redis: conceito, arquitetura chave-valor, casos de uso no backend, como o frontend se beneficia
-- HTTP Caching: headers `Cache-Control`, `ETag`, `Last-Modified`
-- Stale-While-Revalidate: exibir dado antigo enquanto busca atualização
-- Invalidação de cache: TTL, event-based, manual
+- Princípios SOLID aplicados ao frontend
+- Design Patterns:
+  - Facade
+  - Repository
+  - Strategy
+- Segurança:
+  - JWT
+  - OAuth (visão geral)
+  - CORS e CSP
 
 ### Projeto
-- Criar `StorageService` genérico e tipado abstraindo `localStorage`
+- Analisar o projeto atual sob a ótica de SOLID
+- Identificar responsabilidades mal distribuídas
+- Mapear pontos de melhoria para refatoração
+- Relacionar fluxo atual com conceitos de segurança (token, interceptor, guard)
+
+---
+
+## AULA 9 — Refatoração Arquitetural e Estado Reativo
+
+### Temas
+- Smart vs Dumb Components
+- Facade Pattern
+- Injeção de dependência avançada (`InjectionToken`)
+- Cache reativo com RxJS (`shareReplay`)
+
+### Projeto
+- Criar `SolicitacoesFacade` para centralizar lógica da aplicação
+- Refatorar componentes para foco em UI (dumb components)
+- Remover lógica de negócio do componente de lista
 - Implementar cache em memória com `shareReplay`
-- Implementar padrão cache-then-network (cache → atualiza da API em background)
-- Configurar TTL e invalidação ao criar nova solicitação
-- Comparar performance com/sem cache (DevTools Network)
+- Evitar múltiplas chamadas à API
+- Ajustar fluxo de dados entre facade e componentes
 
 ---
 
-## AULA 9 — REAL-TIME: WEBSOCKETS E SERVER-SENT EVENTS
+## AULA 10 — Performance (Fechamento), Internacionalização e Acessibilidade
 
 ### Temas
-- Polling vs WebSocket vs SSE: trade-offs, quando usar cada um
-- WebSockets: protocolo full-duplex, handshake, mensagens bidirecionais
-- Server-Sent Events (SSE): comunicação unidirecional, reconexão automática nativa
-- RxJS + WebSocket: `webSocket()` operator, retry, backoff exponencial
-- Considerações de produção: heartbeat, timeout, reconexão
+- Diagnóstico de performance:
+  - DevTools (Network / Performance)
+  - Lighthouse
+- Identificação de gargalos
+- Revisão de otimizações (virtual scroll, trackBy, OnPush)
+
+- i18n vs l10n
+- `ngx-translate`
+- Locale dinâmico
+
+- Acessibilidade (base):
+  - WCAG
+  - Semântica HTML
+  - ARIA
+  - Navegação por teclado
 
 ### Projeto
-- Implementar polling simples com `interval` + `switchMap` (baseline)
-- Criar `RealtimeService` com `rxjs/webSocket`
-- Receber atualizações de status de solicitações em tempo real
-- Implementar indicador visual "ao vivo" (badge pulsante)
-- Implementar reconexão automática com backoff exponencial
-- Demonstrar SSE com `EventSource` como alternativa unidirecional
-
----
-
-## AULA 10 — INTERNACIONALIZAÇÃO E ACESSIBILIDADE
-
-### Temas
-- i18n vs l10n: internacionalização (estrutura) vs localização (tradução)
-- `ngx-translate`: setup, `TranslateService`, arquivos JSON de tradução, pipe `translate`
-- Pipes de locale: `DatePipe`, `CurrencyPipe`, `DecimalPipe` com locale dinâmico
-- Acessibilidade (a11y): WCAG 2.1, níveis A/AA/AAA
-- Semântica HTML: `<nav>`, `<main>`, `<button>` vs `<div>`
-- ARIA: `role`, `aria-label`, `aria-live`, `aria-describedby`
-- Navegação por teclado: `tabindex`, focus management, skip links
-- Contraste e cores: ferramentas de verificação
-- Angular CDK a11y: `FocusTrap`, `LiveAnnouncer`, `FocusMonitor`
-
-### Projeto
-- Instalar `@ngx-translate/core` + `@ngx-translate/http-loader`
-- Criar traduções pt-BR e en-US
+- Analisar aplicação com DevTools (Network e Performance)
+- Rodar Lighthouse e interpretar resultados
+- Simular lentidão de API e observar impacto
+- Validar otimizações existentes (virtual scroll, trackBy, OnPush)
+- Instalar `@ngx-translate/core` e `@ngx-translate/http-loader`
+- Criar arquivos de tradução (`pt-BR`, `en-US`)
 - Implementar seletor de idioma no header
+- Aplicar pipe `translate` nos componentes
 - Formatar datas e valores monetários por locale
-- Auditar projeto com Lighthouse Accessibility
-- Corrigir semântica HTML
+- Corrigir semântica HTML (uso de tags adequadas)
 - Adicionar ARIA labels nos componentes
 - Implementar navegação por teclado na lista
 
 ---
 
-## AULA 11 — ACESSIBILIDADE AVANÇADA
+## AULA 11 — Tempo Real, Observabilidade e Acessibilidade Avançada
 
 ### Temas
-- Live regions: `aria-live="polite"` e `"assertive"`, anúncios dinâmicos
-- Formulários acessíveis: labels associados, `aria-invalid`, mensagens de erro anunciadas
-- Tabelas acessíveis: `<caption>`, `scope`, navegação por células
-- Componentes customizados acessíveis: WAI-ARIA patterns (dropdown, modal, tabs)
-- Angular CDK: `A11yModule`, `CdkTrapFocus`, `CdkAriaDescribedBy`
-- Preferências do usuário: `prefers-reduced-motion`, `prefers-color-scheme`
-- Testes automatizados de a11y: `axe-core`, `jest-axe`
+- Polling vs WebSockets
+- Atualização em tempo real
+- Observabilidade:
+  - logs estruturados
+  - tratamento global de erros
+  - monitoramento
+
+- Acessibilidade avançada:
+  - Live Regions
+  - Focus management
+  - feedback dinâmico
 
 ### Projeto
-- Implementar `LiveAnnouncer` para anunciar mudanças de status
-- Tornar formulário de nova solicitação totalmente acessível
-- Criar tabela acessível com `<caption>` e `scope`
-- Implementar focus trap em modal de detalhes
-- Adicionar suporte a `prefers-reduced-motion`
-- Configurar `jest-axe` e criar testes automatizados de a11y
-- Auditoria final: Lighthouse Accessibility score ≥ 95
+- Implementar polling simples com `interval` + `switchMap`
+- Criar `RealtimeService` com simulação de eventos (RxJS `Subject`)
+- Atualizar status de solicitações em tempo real
+- Exibir indicador visual de atualização ("ao vivo")
+- Criar interceptor para log de erros de API
+- Implementar tratamento global de erros
+- Utilizar `aria-live` para comunicar mudanças dinâmicas
+- Ajustar foco e interação em atualizações da UI
 
 ---
 
-## AULA 12 — PREPARAÇÃO PARA ENTREGA
+## AULA 12 — Entrega, Produção e Checklist Final
 
 ### Temas
 - Trade-offs técnicos
-- Decisões de arquitetura
-- Preparação para apresentação
+- Checklist de produção
+- Qualidade de aplicação frontend
+- Revisão geral de arquitetura
 
 ### Projeto
-- Organizar código final
-- Preparar entrega/hackathon
+- Revisar performance da aplicação (Lighthouse)
+- Validar funcionamento offline (PWA)
+- Validar comportamento de cache
+- Validar fluxo de erro e observabilidade
+- Revisar acessibilidade (pontuação Lighthouse)
+- Ajustar inconsistências finais de UI e código
+- Consolidar aplicação para portfólio
+- Apresentar decisões técnicas tomadas durante o projeto
+
+---
