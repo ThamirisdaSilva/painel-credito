@@ -52,7 +52,17 @@
   to { transform: rotate(360deg); }
 }
 
-.viewport{
+.viewport {
   height: 600px;
   width: 100%;
+}
+
+/* Estiliza o container interno que segura os itens */
+::ng-deep .cdk-virtual-scroll-content-wrapper {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 1.25rem;
+  padding: 1rem; /* Opcional: para não colar na borda */
+  width: 100%;
+  box-sizing: border-box;
 }
