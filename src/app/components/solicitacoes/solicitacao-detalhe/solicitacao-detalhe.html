@@ -1,0 +1,50 @@
+<div class="detalhe-container">
+
+  <button class="btn-back" routerLink="/solicitacoes">
+    ← Voltar para a lista
+  </button>
+
+  @if (service.loading()) {
+    <p>Carregando...</p>
+
+  } @else if (item) {
+
+    <header class="detalhe-header">
+      <h1>{{ item.cliente }}</h1>
+
+      <span class="status-badge" [ngClass]="item.statusClass">
+        {{ item.statusLabel }}
+      </span>
+    </header>
+
+    <section class="detalhe-content">
+      <div class="info-group">
+        <span class="label">Documento</span>
+        <span class="value">{{ item.documento }}</span>
+      </div>
+
+      <div class="info-group">
+        <span class="label">Valor Solicitado</span>
+        <span class="value value--destaque">
+          {{ item.valor | currency:'BRL' }}
+        </span>
+      </div>
+
+      <div class="info-group">
+        <span class="label">Data da Solicitação</span>
+        <span class="value">
+          {{ item.dataSolicitacao | date:'dd/MM/yyyy' }}
+        </span>
+      </div>
+    </section>
+
+    <footer class="detalhe-actions">
+      <button class="btn-aprovar" (click)="aprovar()">Aprovar</button>
+      <button class="btn-reprovar" (click)="reprovar()">Reprovar</button>
+    </footer>
+
+  } @else {
+    <p>Item não encontrado</p>
+  }
+
+</div>

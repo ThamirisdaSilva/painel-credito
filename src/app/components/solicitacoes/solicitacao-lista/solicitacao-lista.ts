@@ -17,9 +17,10 @@ export class SolicitacaoListaComponent implements OnInit {
   constructor(public service: SolicitacoesService) {}
 
   ngOnInit() {
-    this.service.carregarSolicitacoes();
-  }
-
+    if (this.service.solicitacoes().length === 0) {
+      this.service.carregarSolicitacoes();
+    }
+}
   trackById(index: number, item: SolicitacaoViewModel){
     return item.id;
   }
