@@ -19,4 +19,6 @@ export class SolicitacaoItemComponent {
 irParaDetalhe() {
   this.router.navigate(['/solicitacoes', this.solicitacao.id]);
 }
+
+listaParaExibir: SolicitacaoViewModel[] = [];
 }

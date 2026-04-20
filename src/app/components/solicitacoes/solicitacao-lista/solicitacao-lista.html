@@ -1,16 +1,36 @@
-<app-header title="Painel de Solicitações de Crédito" />
+<div class="page-container">
 
-@if (service.loading()) {
-  <p>Carregando...</p>
-} @else {
-  @if (service.solicitacoes().length === 0) {
-    <p>Nenhuma solicitação encontrada.</p>
+  <app-header title="Solicitações de Crédito"></app-header>
+
+  <div class="top-bar">
+
+    <app-resumo-solicitacoes 
+      [lista]="listaFiltrada()">
+    </app-resumo-solicitacoes>
+
+    <div class="acoes">
+      <app-busca-solicitacoes 
+        (buscaChange)="aplicarBusca($event)">
+      </app-busca-solicitacoes>
+
+      <app-filtro-solicitacoes 
+        (filtroChange)="aplicarFiltro($event)">
+      </app-filtro-solicitacoes>
+    </div>
+  </div>
+
+  @if (service.loading()) {
+    <p>Carregando...</p>
   } @else {
-    <cdk-virtual-scroll-viewport itemSize="140" class="viewport">
-      <div *cdkVirtualFor="let solicitacao of service.solicitacoes(); trackBy: trackById">
-        <app-solicitacao-item [solicitacao]="solicitacao" />
+
+    <cdk-virtual-scroll-viewport itemSize="220" class="viewport">
+      <!-- <div *cdkVirtualFor="let item of listaFiltrada(); trackBy: trackById"> -->
+      <div *ngFor="let item of listaFiltrada(); trackBy: trackById">
+        <app-solicitacao-item [solicitacao]="item"></app-solicitacao-item>
       </div>
+
     </cdk-virtual-scroll-viewport>
+
   }
- 
-}
+
+</div>
