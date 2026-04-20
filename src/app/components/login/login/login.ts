@@ -7,16 +7,17 @@ import { AuthService } from '../../../services/auth.service';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './login.html',
-  styleUrls: ['./login.scss']
+  styleUrls: ['./login.scss'],
 })
 export class LoginComponent {
-
   constructor(
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
   ) {}
 
   login() {
+    const nome = 'teste';
+    console.log(nome);
     this.authService.login();
     this.router.navigate(['/solicitacoes']);
   }
