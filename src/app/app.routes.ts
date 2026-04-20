@@ -19,5 +19,11 @@ export const routes: Routes = [
       import('./components/solicitacoes/solicitacao-lista/solicitacao-lista')
         .then(m => m.SolicitacaoListaComponent),
     canActivate: [authGuard]
-  }
+  },
+  {
+  path: 'solicitacoes/:id',
+  loadComponent: () =>
+    import('./components/solicitacoes/solicitacao-detalhe/solicitacao-detalhe')
+      .then(m => m.SolicitacaoDetalheComponent)
+},
 ];

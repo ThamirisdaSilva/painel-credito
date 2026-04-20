@@ -1,6 +1,7 @@
+
 import { Injectable, signal } from '@angular/core';
 import { Apollo, gql } from 'apollo-angular';
-import { Solicitacao } from '../models/solicitacao.model';
+import { Solicitacao, StatusSolicitacao} from '../models/solicitacao.model';
 
 export interface SolicitacaoViewModel extends Solicitacao {
   statusClass: string;
@@ -50,27 +51,37 @@ export class SolicitacoesService {
     });
   }
 
-  private mapToViewModel(s: Solicitacao): SolicitacaoViewModel {
-    const status = s.status?.toLowerCase() ?? '';
+private mapToViewModel(s: Solicitacao): SolicitacaoViewModel {
+  const status = s.status?.toLowerCase() ?? '';
 
-    const classMap: Record<string, string> = {
-      pendente: 'card__status--pendente',
-      em_analise: 'card__status--analise',
-      aprovado: 'card__status--aprovado',
-      reprovado: 'card__status--recusado'
-    };
+  const classMap: Record<string, string> = {
+    pendente: 'card__status--pendente',
+    em_analise: 'card__status--analise',
+    aprovado: 'card__status--aprovado',
+    recusado: 'card__status--recusado'
+  };
 
-    const labelMap: Record<string, string> = {
-      pendente: 'Pendente',
-      em_analise: 'Em Análise',
-      aprovado: 'Aprovado',
-      reprovado: 'Recusado'
-    };
+  const labelMap: Record<string, string> = {
+    pendente: 'Pendente',
+    em_analise: 'Em Análise',
+    aprovado: 'Aprovado',
+    recusado: 'Recusado'
+  };
 
-    return {
-      ...s,
-      statusClass: classMap[status] ?? '',
-      statusLabel: labelMap[status] ?? s.status
-    };
-  }
+  return {
+    ...s,
+    statusClass: classMap[status] ?? '',
+    statusLabel: labelMap[status] ?? s.status
+  };
+}
+
+atualizarStatus(id: number | string, novoStatus: StatusSolicitacao) {
+  this.solicitacoes.update(lista =>
+    lista.map(item =>
+      String(item.id) === String(id)
+        ? this.mapToViewModel({ ...item, status: novoStatus })
+        : item
+    )
+  );
+}
 }

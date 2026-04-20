@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SolicitacaoViewModel } from '../../../services/graphql.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-solicitacao-item',
@@ -12,4 +13,10 @@ import { SolicitacaoViewModel } from '../../../services/graphql.service';
 })
 export class SolicitacaoItemComponent {
   @Input({ required: true }) solicitacao!: SolicitacaoViewModel;
+
+  constructor(private router: Router) {}
+
+irParaDetalhe() {
+  this.router.navigate(['/solicitacoes', this.solicitacao.id]);
+}
 }
