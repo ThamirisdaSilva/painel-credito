@@ -159,6 +159,7 @@ export class SolicitacoesFacade {
   }
 
   getById(id: number | string) {
+    this.carregar();    
     return this._solicitacoes().find(item =>
       String(item.id) === String(id)
     );
@@ -822,6 +823,7 @@ solicitacao-item.html
   <!-- AÇÕES FORA DO BODY -->
   <div class="card__acoes">
     <button (click)="editar(); $event.stopPropagation()">Editar</button>
+    <button (click)="irParaDetalhe(); $event.stopPropagation()">Analisar</button>
     <button (click)="deletar(); $event.stopPropagation()">Excluir</button>
   </div>
 
@@ -837,7 +839,6 @@ solicitacao-item.scss
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
   transition: box-shadow 0.2s ease, transform 0.2s ease;
   border: 1px solid #e8e8e8;
-  cursor: pointer;
 
   display: flex;
   flex-direction: column;
@@ -870,6 +871,7 @@ solicitacao-item.scss
     border-radius: 20px;
     text-transform: uppercase;
     letter-spacing: 0.5px;
+    cursor: pointer;
   }
 
   &__body {
@@ -928,6 +930,18 @@ solicitacao-item.scss
       background-color: #1d4ed8;
     }
   }
+
+  /* BOTÃO ANALISAR */
+
+  &__acoes button {
+    background-color: #5b21b6; // roxo base (entre o azul e o vermelho)
+    color: #ffffff;
+  
+    &:hover {
+      background-color: #6b357a; // roxo mais quente (puxa pro vermelho sem virar excluir)
+    }
+  }
+  
 
   /* BOTÃO EXCLUIR */
   &__acoes button:last-child {
