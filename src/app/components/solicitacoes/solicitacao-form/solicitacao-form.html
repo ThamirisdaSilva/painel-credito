@@ -1,0 +1,16 @@
+<div class="form-container">
+  <h2>{{ modoEdicao ? 'Editar Solicitação' : 'Nova Solicitação' }}</h2>
+
+  <form (ngSubmit)="salvar()">
+    <input type="text" [(ngModel)]="cliente" name="cliente" placeholder="Cliente" required />
+
+    <input type="text" [(ngModel)]="documento" name="documento" placeholder="Documento" required />
+
+    <input type="number" [(ngModel)]="valor" name="valor" placeholder="Valor" required />
+
+    <div class="form-acoes">
+      <button class="btn-salvar" type="submit">Salvar</button>
+      <button class="btn-cancelar" type="button" (click)="cancelar()">Cancelar</button>
+    </div>
+  </form>
+</div>
