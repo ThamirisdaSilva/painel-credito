@@ -3,12 +3,19 @@
   border-radius: 12px;
   padding: 1.25rem;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-  transition: box-shadow 0.2s ease, transform 0.2s ease;
+  transition:
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
   border: 1px solid #e8e8e8;
+
+  display: flex;
+  flex-direction: column;
+
   &:hover {
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
     transform: translateY(-2px);
   }
+
   &__header {
     display: flex;
     justify-content: space-between;
@@ -17,12 +24,14 @@
     padding-bottom: 0.75rem;
     border-bottom: 1px solid #f0f0f0;
   }
+
   &__cliente {
     font-size: 1.1rem;
     font-weight: 600;
     color: #1a1a2e;
     margin: 0;
   }
+
   &__status {
     font-size: 0.75rem;
     font-weight: 600;
@@ -30,48 +39,107 @@
     border-radius: 20px;
     text-transform: uppercase;
     letter-spacing: 0.5px;
+    cursor: pointer;
   }
+
   &__body {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
   }
+
   &__info {
     display: flex;
     justify-content: space-between;
     align-items: center;
   }
+
   &__label {
     font-size: 0.85rem;
     color: #6b7280;
   }
+
   &__value {
     font-size: 0.9rem;
     font-weight: 500;
     color: #374151;
+
     &--destaque {
       font-size: 1rem;
       font-weight: 700;
       color: #1a1a2e;
     }
   }
+
+  /* ÁREA DE AÇÕES SEPARADA */
+  &__acoes {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: 1rem;
+  }
+
+  &__acoes button {
+    flex: 1;
+    padding: 0.6rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  /* BOTÃO EDITAR */
+  &__acoes button:first-child {
+    background-color: #2563eb;
+    color: #ffffff;
+
+    &:hover {
+      background-color: #1d4ed8;
+    }
+  }
+
+  /* BOTÃO ANALISAR */
+
+  &__acoes button {
+    background-color: #5b21b6; // roxo base (entre o azul e o vermelho)
+    color: #ffffff;
+
+    &:hover {
+      background-color: #6b357a; // roxo mais quente (puxa pro vermelho sem virar excluir)
+    }
+  }
+
+  /* BOTÃO EXCLUIR */
+  &__acoes button:last-child {
+    background-color: #dc2626;
+    color: #ffffff;
+
+    &:hover {
+      background-color: #b91c1c;
+    }
+  }
 }
+
+/* STATUS (FORA DO BLOCO PARA FUNCIONAR COM ngClass) */
 .card__status {
   &--pendente {
     background-color: #fef3c7;
     color: #92400e;
   }
+
   &--analise {
     background-color: #dbeafe;
     color: #1e40af;
   }
+
   &--aprovado {
     background-color: #d1fae5;
     color: #065f46;
   }
+
   &--recusado {
     background-color: #fee2e2;
     color: #991b1b;
   }
 }
- 

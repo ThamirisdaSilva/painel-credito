@@ -1,40 +1,36 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, signal, computed } from '@angular/core';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { SolicitacoesService } from '../../../services/graphql.service';
 import { CommonModule } from '@angular/common';
+import { SolicitacoesFacade } from '../../../services/solicitacoes.facade';
 
 @Component({
   selector: 'app-solicitacao-detalhe',
-  standalone: true,
   imports: [CommonModule, RouterLink],
   templateUrl: './solicitacao-detalhe.html',
-  styleUrl: './solicitacao-detalhe.scss'
+  styleUrl: './solicitacao-detalhe.scss',
 })
-export class SolicitacaoDetalheComponent implements OnInit {
+export class SolicitacaoDetalheComponent {
+  private router = inject(Router);
+  private route = inject(ActivatedRoute);
+  public service = inject(SolicitacoesService);
+  public facade = inject(SolicitacoesFacade);
 
-  id!: number;
+  id = signal<number>(0);
 
-  constructor(
-    private route: ActivatedRoute,
-    private router: Router,
-    public service: SolicitacoesService
-  ) {}
+  item = computed(() => {
+    const idValue = this.id();
+    return this.facade.lista().find((solicitacao) => String(solicitacao.id) === String(idValue));
+  });
 
   ngOnInit() {
-    this.id = Number(this.route.snapshot.paramMap.get('id'));
-
-    if (this.service.solicitacoes().length === 0) {
-      this.service.carregarSolicitacoes();
-    }
-  }
-
-  get item() {
-    return this.service.solicitacoes()
-      .find(s => String(s.id) === String(this.id));
+    const routeId = Number(this.route.snapshot.paramMap.get('id'));
+    this.id.set(routeId);
+    this.facade.carregar();
   }
 
   aprovar() {
-    this.service.atualizarStatus(this.id, 'aprovado');
+    this.facade.atualizarStatus(this.id(), 'aprovado');
 
     setTimeout(() => {
       this.router.navigate(['/solicitacoes']);
@@ -42,7 +38,7 @@ export class SolicitacaoDetalheComponent implements OnInit {
   }
 
   reprovar() {
-    this.service.atualizarStatus(this.id, 'recusado');
+    this.facade.atualizarStatus(this.id(), 'recusado');
 
     setTimeout(() => {
       this.router.navigate(['/solicitacoes']);

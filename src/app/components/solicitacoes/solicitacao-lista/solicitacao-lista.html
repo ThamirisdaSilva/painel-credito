@@ -1,34 +1,30 @@
 <div class="page-container">
-
+  <!-- HEADER -->
   <app-header title="Solicitações de Crédito"></app-header>
 
+  <!-- RESUMO -->
+  <app-resumo-solicitacoes [lista]="facade.listaFiltrada()"> </app-resumo-solicitacoes>
+
+  <!-- TOP BAR -->
   <div class="top-bar">
+    <!-- ESQUERDA -->
+    <div class="left">
+      <button class="btn-novo" (click)="irParaNova()">Nova Solicitação</button>
 
-    <app-resumo-solicitacoes [lista]="listaFiltrada()">
-    </app-resumo-solicitacoes>
+      <app-busca-solicitacoes (buscaChange)="facade.aplicarBusca($event)"> </app-busca-solicitacoes>
+    </div>
 
-    <div class="acoes">
-      <app-busca-solicitacoes 
-        (buscaChange)="aplicarBusca($event)">
-      </app-busca-solicitacoes>
-
-      <app-filtro-solicitacoes 
-        (filtroChange)="aplicarFiltro($event)">
+    <!-- DIREITA -->
+    <div class="right">
+      <app-filtro-solicitacoes (filtroChange)="facade.aplicarFiltro($event)">
       </app-filtro-solicitacoes>
     </div>
   </div>
 
-  @if (service.loading()) {
-    <p>Carregando...</p>
-  } @else {
-
-    <cdk-virtual-scroll-viewport itemSize="220" class="viewport">
-      <div *ngFor="let item of listaFiltrada(); trackBy: trackById">
-        <app-solicitacao-item [solicitacao]="item"></app-solicitacao-item>
-      </div>
-
-    </cdk-virtual-scroll-viewport>
-
-  }
-
+  <!-- LISTA -->
+  <div class="lista">
+    <div *ngFor="let item of facade.listaFiltrada(); trackBy: trackById">
+      <app-solicitacao-item [solicitacao]="item"> </app-solicitacao-item>
+    </div>
+  </div>
 </div>
