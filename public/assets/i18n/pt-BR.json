@@ -1,0 +1,58 @@
+{
+  "APP": {
+    "TITLE": "Painel de Solicitações de Crédito"
+  },
+  "LOGIN": {
+    "TITLE": "Entrar no Painel de Crédito",
+    "DESCRIPTION": "Acesse sua conta para visualizar e gerenciar as solicitações de crédito.",
+    "EMAIL": "Email",
+    "PASSWORD": "Senha",
+    "ENTER": "Entrar",
+    "ENTERING": "Entrando...",
+    "GOOGLE": "Entrar com Google"
+  },
+  "PROFILE": {
+    "TITLE": "Perfil e Configurações",
+    "PREFERENCES": "Preferências",
+    "SECURITY": "Segurança",
+    "LANGUAGE": "Idioma",
+    "THEME": "Tema",
+    "LIGHT": "Claro",
+    "DARK": "Escuro",
+    "LOGOUT": "Sair da conta"
+  },
+  "FORM": {
+    "NEW": "Nova Solicitação",
+    "EDIT": "Editar Solicitação",
+    "CLIENT": "Nome do cliente",
+    "CPF": "CPF",
+    "VALUE": "Valor solicitado",
+    "SAVE": "Salvar",
+    "CANCEL": "Cancelar",
+    "ERROR_NAME": "Nome é obrigatório.",
+    "ERROR_CPF": "CPF deve conter exatamente 11 números."
+  },
+  "ACTIONS": {
+    "REQUESTS": "Solicitações",
+    "NEW_REQUEST": "Nova Solicitação",
+    "EDIT": "Editar",
+    "ANALYZE": "Analisar",
+    "DELETE": "Excluir",
+    "LOGOUT": "Sair",
+    "PROFILE": "Perfil"
+  },
+  "REQUEST": {
+  "DATE": "Data da Solicitação"
+},
+"SEARCH": {
+  "PLACEHOLDER": "Buscar cliente"
+},
+"FILTER": {
+  "ALL": "Todos"
+},
+"STATUS": {
+  "PENDING": "Pendente",
+  "APPROVED": "Aprovado",
+  "REJECTED": "Recusado"
+}
+}

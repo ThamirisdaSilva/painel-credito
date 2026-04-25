@@ -1,24 +1,52 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+
 import { AuthService } from '../../../services/auth.service';
 
 @Component({
+  selector: 'app-login',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './login.html',
   styleUrls: ['./login.scss'],
 })
 export class LoginComponent {
+  email = '';
+  senha = '';
+  carregando = false;
+
   constructor(
+    public authService: AuthService,
     private router: Router,
-    private authService: AuthService,
   ) {}
 
-  login() {
-    const nome = 'teste';
-    console.log(nome);
-    this.authService.login();
-    this.router.navigate(['/solicitacoes']);
+  async login() {
+    console.log('Tentando login com:', this.email);
+
+    this.carregando = true;
+
+    const usuario = await this.authService.loginComEmailSenha(this.email, this.senha);
+
+    this.carregando = false;
+
+    console.log('Usuário retornado:', usuario);
+
+    if (usuario) {
+      this.router.navigate(['/solicitacoes']);
+    }
+  }
+
+  async loginComGoogle() {
+    this.carregando = true;
+
+    const usuario = await this.authService.loginComGoogle();
+
+    this.carregando = false;
+
+    if (usuario) {
+      this.router.navigate(['/solicitacoes']);
+    }
   }
 }

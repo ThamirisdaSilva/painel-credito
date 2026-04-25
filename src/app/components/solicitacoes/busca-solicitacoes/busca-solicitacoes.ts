@@ -1,16 +1,17 @@
 import { Component, Output, EventEmitter } from '@angular/core';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-busca-solicitacoes',
   standalone: true,
-  templateUrl: './busca-solicitacoes.html'
+  imports: [TranslatePipe],
+  templateUrl: './busca-solicitacoes.html',
 })
 export class BuscaSolicitacoesComponent {
-
   @Output() buscaChange = new EventEmitter<string>();
 
-  onChange(event: any) {
-    this.buscaChange.emit(event.target.value);
+  onChange(event: Event) {
+    const input = event.target as HTMLInputElement;
+    this.buscaChange.emit(input.value);
   }
 }
-

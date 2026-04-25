@@ -1,10 +1,19 @@
 <div class="filtro-container">
-
   <select #select class="filtro-select" (change)="selecionar(select.value)">
-    <option value="">Todos</option>
-    <option value="pendente">Pendente</option>
-    <option value="aprovado">Aprovado</option>
-    <option value="recusado">Recusado</option>
-  </select>
+    <option value="">
+      {{ 'FILTER.ALL' | translate }}
+    </option>
 
+    <option value="pendente">
+      {{ 'STATUS.PENDING' | translate }}
+    </option>
+
+    <option value="aprovado">
+      {{ 'STATUS.APPROVED' | translate }}
+    </option>
+
+    <option value="recusado">
+      {{ 'STATUS.REJECTED' | translate }}
+    </option>
+  </select>
 </div>

@@ -5,11 +5,12 @@ import { FormsModule } from '@angular/forms';
 
 import { SolicitacoesFacade } from '../../../services/solicitacoes.facade';
 import { StatusSolicitacao } from '../../../models/solicitacao.model';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-solicitacao-form',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, TranslatePipe],
   templateUrl: './solicitacao-form.html',
   styleUrls: ['./solicitacao-form.scss'],
 })
@@ -20,6 +21,9 @@ export class SolicitacaoFormComponent implements OnInit {
 
   modoEdicao = false;
   idEdicao: number | null = null;
+
+  nomeInvalido = false;
+  cpfInvalido = false;
 
   constructor(
     private facade: SolicitacoesFacade,
@@ -46,11 +50,24 @@ export class SolicitacaoFormComponent implements OnInit {
     }
   }
 
+  apenasNumeros(event: Event) {
+    const input = event.target as HTMLInputElement;
+    input.value = input.value.replace(/\D/g, '');
+    this.documento = input.value;
+  }
+
   salvar() {
+    this.nomeInvalido = this.cliente.trim() === '';
+    this.cpfInvalido = !/^\d{11}$/.test(this.documento);
+
+    if (this.nomeInvalido || this.cpfInvalido) {
+      return;
+    }
+
     if (this.modoEdicao && this.idEdicao) {
       this.facade.editar(this.idEdicao, {
         id: this.idEdicao,
-        cliente: this.cliente,
+        cliente: this.cliente.trim(),
         documento: this.documento,
         valor: this.valor,
         dataSolicitacao: new Date().toISOString(),
@@ -61,7 +78,7 @@ export class SolicitacaoFormComponent implements OnInit {
     } else {
       this.facade.criar({
         id: Date.now(),
-        cliente: this.cliente,
+        cliente: this.cliente.trim(),
         documento: this.documento,
         valor: this.valor,
         dataSolicitacao: new Date().toISOString(),

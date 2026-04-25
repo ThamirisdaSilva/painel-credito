@@ -1,13 +1,33 @@
 <header class="header">
-  @if(isOffline){
-  <div class="offline-banner" style="background-color: #ff9800; color: white; text-align: center; padding: 10px;">
-    Você está navegando sem internet. Verifique se você colocou crédito no seu esperto fone.
-  </div>
+  @if (isOffline) {
+    <div class="offline-banner">Você está navegando sem internet. Verifique sua conexão.</div>
   }
+
   <div class="header__container">
-    <h1 class="header__title">{{ title }}</h1>
-    <p class="header__subtitle">
-      Gerencie e acompanhe as solicitações de crédito
-    </p>
+    <div>
+      <h1 class="header__title">
+        {{ title }}
+      </h1>
+
+      <p class="header__subtitle">
+        {{ 'APP.TITLE' | translate }}
+      </p>
+    </div>
+
+    @if (authService.usuario() && !estaNaTelaLogin()) {
+      <div class="header__auth">
+        <a class="header__link" routerLink="/solicitacoes">
+          {{ 'ACTIONS.REQUESTS' | translate }}
+        </a>
+
+        <a class="header__link" routerLink="/perfil">
+          {{ 'ACTIONS.PROFILE' | translate }}
+        </a>
+
+        <button type="button" class="header__logout" (click)="logout()">
+          {{ 'ACTIONS.LOGOUT' | translate }}
+        </button>
+      </div>
+    }
   </div>
 </header>

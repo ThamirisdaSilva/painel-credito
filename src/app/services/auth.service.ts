@@ -1,61 +1,133 @@
 import { Injectable, signal } from '@angular/core';
+import {
+  Auth,
+  GoogleAuthProvider,
+  User,
+  onAuthStateChanged,
+  signInWithEmailAndPassword,
+  signInWithPopup,
+  signOut,
+} from '@angular/fire/auth';
+
+export type LoginProvider = 'email' | 'google';
+
+export interface AccessInfo {
+  date: string;
+  provider: LoginProvider;
+  email: string | null;
+  userAgent: string;
+}
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
-
-  private tokenKey = 'auth_token';
+  usuario = signal<User | null>(null);
+  carregando = signal(true);
+  erro = signal<string | null>(null);
+  ultimoAcesso = signal<AccessInfo | null>(null);
 
   isAuthenticated = signal(false);
 
-  login() {
-    const token = this.generateMockToken();
+  private accessStorageKey = 'ultimo_acesso';
 
-    localStorage.setItem(this.tokenKey, token);
-    this.isAuthenticated.set(true);
+  constructor(private auth: Auth) {
+    this.carregarUltimoAcesso();
+
+    onAuthStateChanged(this.auth, (user) => {
+      this.usuario.set(user);
+      this.isAuthenticated.set(!!user);
+      this.carregando.set(false);
+    });
   }
 
-  logout() {
-    localStorage.removeItem(this.tokenKey);
-    this.isAuthenticated.set(false);
-  }
+  async loginComEmailSenha(email: string, senha: string): Promise<User | null> {
+    this.erro.set(null);
 
-  getToken(): string | null {
-    return localStorage.getItem(this.tokenKey);
-  }
-
-  decodeToken() {
-    const token = this.getToken();
-
-    if (!token) return null;
+    if (!email || !senha) {
+      this.erro.set('Informe email e senha.');
+      this.isAuthenticated.set(false);
+      return null;
+    }
 
     try {
-      return JSON.parse(atob(token));
+      const credencial = await signInWithEmailAndPassword(this.auth, email, senha);
+
+      this.usuario.set(credencial.user);
+      this.isAuthenticated.set(true);
+      this.registrarAcesso('email', credencial.user.email);
+
+      return credencial.user;
     } catch {
+      this.erro.set('Não foi possível entrar. Verifique email e senha.');
+      this.isAuthenticated.set(false);
       return null;
     }
   }
 
-  isTokenExpired(): boolean {
-    const payload = this.decodeToken();
+  async loginComGoogle(): Promise<User | null> {
+    this.erro.set(null);
 
-    if (!payload?.exp) return true;
+    try {
+      const provider = new GoogleAuthProvider();
+      const credencial = await signInWithPopup(this.auth, provider);
 
-    const now = Math.floor(Date.now() / 1000);
+      this.usuario.set(credencial.user);
+      this.isAuthenticated.set(true);
+      this.registrarAcesso('google', credencial.user.email);
 
-    return payload.exp < now;
+      return credencial.user;
+    } catch {
+      this.erro.set('Não foi possível entrar com Google.');
+      this.isAuthenticated.set(false);
+      return null;
+    }
   }
 
-  private generateMockToken(): string {
-    const payload = {
-      sub: 'user123',
-      name: 'Usuário Teste',
-      role: 'admin',
-      exp: Math.floor(Date.now() / 1000) + 60 * 60 // 1h
+  async logout(): Promise<void> {
+    await signOut(this.auth);
+
+    this.usuario.set(null);
+    this.isAuthenticated.set(false);
+  }
+
+  estaLogado(): boolean {
+    return this.isAuthenticated();
+  }
+
+  async getToken(): Promise<string | null> {
+    const user = this.auth.currentUser;
+
+    if (!user) {
+      return null;
+    }
+
+    return user.getIdToken();
+  }
+
+  private carregarUltimoAcesso() {
+    const acessoSalvo = localStorage.getItem(this.accessStorageKey);
+
+    if (!acessoSalvo) {
+      return;
+    }
+
+    try {
+      this.ultimoAcesso.set(JSON.parse(acessoSalvo));
+    } catch {
+      localStorage.removeItem(this.accessStorageKey);
+    }
+  }
+
+  private registrarAcesso(provider: LoginProvider, email: string | null) {
+    const acesso: AccessInfo = {
+      date: new Date().toISOString(),
+      provider,
+      email,
+      userAgent: navigator.userAgent,
     };
 
-    return btoa(JSON.stringify(payload));
+    this.ultimoAcesso.set(acesso);
+    localStorage.setItem(this.accessStorageKey, JSON.stringify(acesso));
   }
 }
- 

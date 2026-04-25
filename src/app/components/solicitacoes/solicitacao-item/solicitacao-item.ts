@@ -4,11 +4,12 @@ import { Router } from '@angular/router';
 
 import { SolicitacaoViewModel } from '../../../services/graphql.service';
 import { SolicitacoesFacade } from '../../../services/solicitacoes.facade';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-solicitacao-item',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, TranslatePipe],
   templateUrl: './solicitacao-item.html',
   styleUrls: ['./solicitacao-item.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
