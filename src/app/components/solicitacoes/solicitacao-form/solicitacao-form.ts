@@ -21,6 +21,9 @@ export class SolicitacaoFormComponent implements OnInit {
   modoEdicao = false;
   idEdicao: number | null = null;
 
+  nomeInvalido = false;
+  cpfInvalido = false;
+
   constructor(
     private facade: SolicitacoesFacade,
     private router: Router,
@@ -46,11 +49,24 @@ export class SolicitacaoFormComponent implements OnInit {
     }
   }
 
+  apenasNumeros(event: Event) {
+    const input = event.target as HTMLInputElement;
+    input.value = input.value.replace(/\D/g, '');
+    this.documento = input.value;
+  }
+
   salvar() {
+    this.nomeInvalido = this.cliente.trim() === '';
+    this.cpfInvalido = !/^\d{11}$/.test(this.documento);
+
+    if (this.nomeInvalido || this.cpfInvalido) {
+      return;
+    }
+
     if (this.modoEdicao && this.idEdicao) {
       this.facade.editar(this.idEdicao, {
         id: this.idEdicao,
-        cliente: this.cliente,
+        cliente: this.cliente.trim(),
         documento: this.documento,
         valor: this.valor,
         dataSolicitacao: new Date().toISOString(),
@@ -61,7 +77,7 @@ export class SolicitacaoFormComponent implements OnInit {
     } else {
       this.facade.criar({
         id: Date.now(),
-        cliente: this.cliente,
+        cliente: this.cliente.trim(),
         documento: this.documento,
         valor: this.valor,
         dataSolicitacao: new Date().toISOString(),

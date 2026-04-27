@@ -1,17 +1,25 @@
-import { Component, HostListener, Input } from '@angular/core';
+import { Component, HostListener, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
+
+import { AuthService } from '../../../services/auth.service';
 
 @Component({
   standalone: true,
   selector: 'app-header',
   imports: [CommonModule],
   templateUrl: './header.html',
-  styleUrls: ['./header.scss']
+  styleUrls: ['./header.scss'],
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit {
   @Input() title = '';
 
   isOffline = !navigator.onLine;
+
+  constructor(
+    public authService: AuthService,
+    private router: Router,
+  ) {}
 
   ngOnInit(): void {
     this.isOffline = !navigator.onLine;
@@ -27,4 +35,12 @@ export class HeaderComponent {
     this.isOffline = false;
   }
 
+  estaNaTelaLogin() {
+    return this.router.url === '/login';
+  }
+
+  async logout() {
+    await this.authService.logout();
+    this.router.navigate(['/login']);
+  }
 }

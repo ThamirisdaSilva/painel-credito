@@ -1,15 +1,54 @@
 <div class="form-container">
   <h2>{{ modoEdicao ? 'Editar Solicitação' : 'Nova Solicitação' }}</h2>
 
-  <form (ngSubmit)="salvar()">
-    <input type="text" [(ngModel)]="cliente" name="cliente" placeholder="Cliente" required />
+  <form (ngSubmit)="salvar()" novalidate>
+    <label for="cliente">Nome do cliente</label>
+    <input
+      id="cliente"
+      type="text"
+      [(ngModel)]="cliente"
+      name="cliente"
+      placeholder="Digite o nome do cliente"
+      [attr.aria-invalid]="nomeInvalido"
+      aria-describedby="erro-cliente"
+    />
 
-    <input type="text" [(ngModel)]="documento" name="documento" placeholder="Documento" required />
+    @if (nomeInvalido) {
+      <small id="erro-cliente" class="erro" aria-live="polite"> Nome é obrigatório. </small>
+    }
 
-    <input type="number" [(ngModel)]="valor" name="valor" placeholder="Valor" required />
+    <label for="documento">CPF</label>
+    <input
+      id="documento"
+      type="text"
+      [(ngModel)]="documento"
+      name="documento"
+      placeholder="Digite somente os 11 números do CPF"
+      maxlength="11"
+      inputmode="numeric"
+      (input)="apenasNumeros($event)"
+      [attr.aria-invalid]="cpfInvalido"
+      aria-describedby="erro-documento"
+    />
+
+    @if (cpfInvalido) {
+      <small id="erro-documento" class="erro" aria-live="polite">
+        CPF deve conter exatamente 11 números.
+      </small>
+    }
+
+    <label for="valor">Valor solicitado</label>
+    <input
+      id="valor"
+      type="number"
+      [(ngModel)]="valor"
+      name="valor"
+      placeholder="Digite o valor solicitado"
+    />
 
     <div class="form-acoes">
       <button class="btn-salvar" type="submit">Salvar</button>
+
       <button class="btn-cancelar" type="button" (click)="cancelar()">Cancelar</button>
     </div>
   </form>
