@@ -1,0 +1,77 @@
+<app-header title="Central de Atividades"></app-header>
+
+<main class="atividades-page">
+  <section class="atividades-hero">
+    <div>
+      <p class="eyebrow">Tempo real com Firebase Firestore</p>
+
+      <h2>Eventos recentes da aplicação</h2>
+
+      <p>
+        Acompanhe logins, alterações de solicitações e mudanças de preferências registradas
+        automaticamente pelo sistema.
+      </p>
+    </div>
+
+    <a class="btn-voltar" routerLink="/solicitacoes"> Voltar para solicitações </a>
+  </section>
+
+  <section class="live-card" aria-live="polite">
+    <span class="live-dot" aria-hidden="true"></span>
+    Atualizações em tempo real ativadas
+  </section>
+
+  @if (atividades$ | async; as atividades) {
+    @if (atividades.length > 0) {
+      <section class="timeline" aria-label="Lista de atividades recentes">
+        @for (atividade of atividades; track atividade.id) {
+          <article class="atividade-card">
+            <div class="atividade-card__icone" aria-hidden="true">
+              {{ getIcone(atividade.tipo) }}
+            </div>
+
+            <div class="atividade-card__conteudo">
+              <div class="atividade-card__topo">
+                <h3>
+                  {{ getTitulo(atividade.tipo) }}
+                </h3>
+
+                @if (atividade.data?.toDate) {
+                  <time>
+                    {{ atividade.data.toDate() | date: 'dd/MM/yyyy HH:mm:ss' }}
+                  </time>
+                }
+              </div>
+
+              <p class="atividade-card__descricao">
+                {{ atividade.descricao }}
+              </p>
+
+              <div class="atividade-card__usuario">
+                @if (atividade.usuarioFoto) {
+                  <img [src]="atividade.usuarioFoto" alt="" aria-hidden="true" />
+                }
+
+                <span>
+                  {{
+                    atividade.usuarioNome || atividade.usuarioEmail || 'Usuário não identificado'
+                  }}
+                </span>
+
+                @if (atividade.usuarioEmail) {
+                  <small>
+                    {{ atividade.usuarioEmail }}
+                  </small>
+                }
+              </div>
+            </div>
+          </article>
+        }
+      </section>
+    } @else {
+      <p class="empty">Nenhuma atividade registrada ainda.</p>
+    }
+  } @else {
+    <p class="loading">Carregando atividades...</p>
+  }
+</main>

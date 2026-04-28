@@ -6,6 +6,7 @@ import { TranslatePipe } from '@ngx-translate/core';
 import { AuthService } from '../../../services/auth.service';
 import { AppLanguage, AppTheme, PreferencesService } from '../../../services/preferences.service';
 import { HeaderComponent } from '../../shared/header/header';
+import { AtividadesService } from '../../../services/atividades.service';
 
 @Component({
   selector: 'app-perfil-usuario',
@@ -18,6 +19,7 @@ export class PerfilUsuarioComponent {
   constructor(
     public authService: AuthService,
     public preferencesService: PreferencesService,
+    private atividadesService: AtividadesService,
     private router: Router,
   ) {}
 
@@ -32,7 +34,14 @@ export class PerfilUsuarioComponent {
   }
 
   async sair() {
+    await this.atividadesService.registrarAtividade({
+      tipo: 'logout',
+      descricao: 'Usuário saiu da aplicação pela tela de perfil',
+      entidade: 'usuario',
+    });
+
     await this.authService.logout();
+
     this.router.navigate(['/login']);
   }
 }

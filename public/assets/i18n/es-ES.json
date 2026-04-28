@@ -1,0 +1,80 @@
+{
+  "APP": {
+    "TITLE": "Panel de Solicitudes de Crédito",
+    "SUBTITLE": "Gestiona y realiza el seguimiento de las solicitudes de crédito"
+  },
+  "LOGIN": {
+    "TITLE": "Ingresar al Panel de Crédito",
+    "DESCRIPTION": "Accede a tu cuenta para ver y gestionar las solicitudes de crédito.",
+    "EMAIL": "Correo electrónico",
+    "PASSWORD": "Contraseña",
+    "ENTER": "Ingresar",
+    "ENTERING": "Ingresando...",
+    "GOOGLE": "Ingresar con Google"
+  },
+  "PROFILE": {
+    "TITLE": "Perfil y Configuraciones",
+    "PREFERENCES": "Preferencias",
+    "SECURITY": "Seguridad",
+    "LANGUAGE": "Idioma",
+    "THEME": "Tema",
+    "LIGHT": "Claro",
+    "DARK": "Oscuro",
+    "LOGOUT": "Cerrar sesión",
+    "LOGIN_TYPE" : "Tipo de inicio de sesión",
+    "LOGIN_PROVIDER": "Proveedor",
+    "LAST_ACCESS": "Último acceso"
+  },
+  "FORM": {
+    "NEW": "Nueva Solicitud",
+    "EDIT": "Editar Solicitud",
+    "CLIENT": "Nombre del cliente",
+    "CPF": "CPF",
+    "VALUE": "Valor solicitado",
+    "PLACEHOLDER_CLIENT": "Escribe el nombre del cliente",
+    "PLACEHOLDER_CPF": "Escribe solo los 11 números del CPF",
+    "PLACEHOLDER_VALUE": "Escribe el valor solicitado",
+    "SAVE": "Guardar",
+    "CANCEL": "Cancelar",
+    "ERROR_NAME": "El nombre es obligatorio.",
+    "ERROR_CPF": "El CPF debe contener exactamente 11 números."
+  },
+  "ACTIONS": {
+    "REQUESTS": "Solicitudes",
+    "NEW_REQUEST": "Nueva Solicitud",
+    "EDIT": "Editar",
+    "ANALYZE": "Analizar",
+    "DELETE": "Eliminar",
+    "LOGOUT": "Salir",
+    "PROFILE": "Perfil",
+    "ACTIVITIES": "Actividades"
+  },
+  "SEARCH": {
+    "PLACEHOLDER": "Buscar cliente"
+  },
+  "FILTER": {
+    "ALL": "Todos"
+  },
+  "STATUS": {
+    "PENDING": "Pendiente",
+    "APPROVED": "Aprobado",
+    "REJECTED": "Rechazado"
+  },
+  "REQUEST": {
+    "DATE": "Fecha de la Solicitud"
+  },
+  "SUMMARY": {
+    "TOTAL_REQUESTS": "Total de Solicitudes",
+    "PENDING": "Pendientes",
+    "APPROVED": "Aprobadas",
+    "REJECTED": "Rechazadas"
+  },
+  "ACTIVITIES": {
+    "INFORMATION": "Actualizaciones en tiempo real con Firebase Firestore",
+    "TITLE": "Eventos recientes de la aplicación",
+    "DESCRIPTION": "Registra automáticamente los inicios de sesión, los cambios de solicitudes y los cambios de preferencias.",
+    "BACK": "Volver a las solicitudes",
+    "MESSAGE": "Actualizaciones en tiempo real habilitadas"
+    }
+}
+ 

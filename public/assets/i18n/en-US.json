@@ -19,7 +19,10 @@
     "THEME": "Theme",
     "LIGHT": "Light",
     "DARK": "Dark",
-    "LOGOUT": "Sign out"
+    "LOGOUT": "Sign out",
+    "LOGIN_TYPE" : "Login type",
+    "LOGIN_PROVIDER": "Provider",
+    "LAST_ACCESS": "Last access"
   },
   "FORM": {
     "NEW": "New Request",
@@ -39,7 +42,8 @@
     "ANALYZE": "Review",
     "DELETE": "Delete",
     "LOGOUT": "Sign out",
-    "PROFILE": "Profile"
+    "PROFILE": "Profile", 
+    "ACTIVITIES": "Activities"
   },
   "REQUEST": {
     "DATE": "Request Date"

@@ -40,6 +40,22 @@ export const routes: Routes = [
       ),
     canActivate: [authGuard],
   },
+  {
+    path: 'perfil',
+    loadComponent: () =>
+      import('./components/perfil/perfil-usuario/perfil-usuario').then(
+        (m) => m.PerfilUsuarioComponent,
+      ),
+    canActivate: [authGuard],
+  },
+  {
+    path: 'atividades',
+    loadComponent: () =>
+      import('./components/atividades/atividades-lista/atividades-lista').then(
+        (m) => m.AtividadesListaComponent,
+      ),
+    canActivate: [authGuard],
+  },
 
   // ROTA GENÉRICA SEMPRE POR ÚLTIMO
 
@@ -48,14 +64,6 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./components/solicitacoes/solicitacao-detalhe/solicitacao-detalhe').then(
         (m) => m.SolicitacaoDetalheComponent,
-      ),
-    canActivate: [authGuard],
-  },
-  {
-    path: 'perfil',
-    loadComponent: () =>
-      import('./components/perfil/perfil-usuario/perfil-usuario').then(
-        (m) => m.PerfilUsuarioComponent,
       ),
     canActivate: [authGuard],
   },

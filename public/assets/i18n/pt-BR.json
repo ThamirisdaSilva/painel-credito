@@ -19,7 +19,10 @@
     "THEME": "Tema",
     "LIGHT": "Claro",
     "DARK": "Escuro",
-    "LOGOUT": "Sair da conta"
+    "LOGOUT": "Sair da conta",
+    "LOGIN_TYPE" : "Tipo de login",
+    "LOGIN_PROVIDER": "Provedor",
+    "LAST_ACCESS": "Último acesso"
   },
   "FORM": {
     "NEW": "Nova Solicitação",
@@ -39,7 +42,8 @@
     "ANALYZE": "Analisar",
     "DELETE": "Excluir",
     "LOGOUT": "Sair",
-    "PROFILE": "Perfil"
+    "PROFILE": "Perfil", 
+    "ACTIVITIES": "Atividades"
   },
   "REQUEST": {
   "DATE": "Data da Solicitação"

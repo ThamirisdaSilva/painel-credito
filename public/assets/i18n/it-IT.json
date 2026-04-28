@@ -1,0 +1,62 @@
+{
+  "APP": {
+    "TITLE": "Pannello delle Richieste di Credito"
+  },
+  "LOGIN": {
+    "TITLE": "Accedere al Pannello di Credito",
+    "DESCRIPTION": "Accedi al tuo account per visualizzare e gestire le richieste di credito.",
+    "EMAIL": "Email",
+    "PASSWORD": "Password",
+    "ENTER": "Accedi",
+    "ENTERING": "Accesso in corso...",
+    "GOOGLE": "Accedi con Google"
+  },
+  "PROFILE": {
+    "TITLE": "Profilo e Impostazioni",
+    "PREFERENCES": "Preferenze",
+    "SECURITY": "Sicurezza",
+    "LANGUAGE": "Lingua",
+    "THEME": "Tema",
+    "LIGHT": "Chiaro",
+    "DARK": "Scuro",
+    "LOGOUT": "Esci dall'account",
+    "LOGIN_TYPE" : "Tipo di login",
+    "LOGIN_PROVIDER": "Fornitore",
+    "LAST_ACCESS": "Ultimo accesso"
+  },
+  "FORM": {
+    "NEW": "Nuova Richiesta",
+    "EDIT": "Modifica Richiesta",
+    "CLIENT": "Nome del cliente",
+    "CPF": "CPF",
+    "VALUE": "Importo richiesto",
+    "SAVE": "Salva",
+    "CANCEL": "Annulla",
+    "ERROR_NAME": "Il nome è obbligatorio.",
+    "ERROR_CPF": "Il CPF deve contenere esattamente 11 numeri."
+  },
+  "ACTIONS": {
+    "REQUESTS": "Richieste",
+    "NEW_REQUEST": "Nuova Richiesta",
+    "EDIT": "Modifica",
+    "ANALYZE": "Analizza",
+    "DELETE": "Elimina",
+    "LOGOUT": "Esci",
+    "PROFILE": "Profilo",
+    "ACTIVITIES": "Attività"
+  },
+  "REQUEST": {
+    "DATE": "Data della Richiesta"
+  },
+  "SEARCH": {
+    "PLACEHOLDER": "Cerca cliente"
+  },
+  "FILTER": {
+    "ALL": "Tutti"
+  },
+  "STATUS": {
+    "PENDING": "In sospeso",
+    "APPROVED": "Approvato",
+    "REJECTED": "Rifiutato"
+  }
+}
