@@ -5,11 +5,12 @@ import { FormsModule } from '@angular/forms';
 
 import { SolicitacoesFacade } from '../../../services/solicitacoes.facade';
 import { StatusSolicitacao } from '../../../models/solicitacao.model';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-solicitacao-form',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, TranslatePipe],
   templateUrl: './solicitacao-form.html',
   styleUrls: ['./solicitacao-form.scss'],
 })

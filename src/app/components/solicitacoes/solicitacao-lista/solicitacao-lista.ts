@@ -10,6 +10,7 @@ import { ResumoSolicitacoesComponent } from '../resumo-solicitacoes/resumo-solic
 import { BuscaSolicitacoesComponent } from '../busca-solicitacoes/busca-solicitacoes';
 import { SolicitacaoViewModel } from '../../../services/graphql.service';
 import { Router } from '@angular/router';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-solicitacao-lista',
@@ -22,6 +23,7 @@ import { Router } from '@angular/router';
     FiltroSolicitacoesComponent,
     ResumoSolicitacoesComponent,
     BuscaSolicitacoesComponent,
+    TranslatePipe,
   ],
   templateUrl: './solicitacao-lista.html',
   styleUrls: ['./solicitacao-lista.scss'],

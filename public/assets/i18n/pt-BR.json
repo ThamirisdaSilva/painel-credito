@@ -1,0 +1,69 @@
+{
+  "APP": {
+    "TITLE": "Painel de Solicitações de Crédito",
+    "SUBTITLE": "Gerencie e acompanhe as solicitações de crédito"
+  },
+  "LOGIN": {
+    "TITLE": "Entrar no Painel de Crédito",
+    "DESCRIPTION": "Acesse sua conta para visualizar e gerenciar as solicitações de crédito.",
+    "EMAIL": "Email",
+    "PASSWORD": "Senha",
+    "ENTER": "Entrar",
+    "ENTERING": "Entrando...",
+    "GOOGLE": "Entrar com Google"
+  },
+  "PROFILE": {
+    "TITLE": "Perfil e Configurações",
+    "PREFERENCES": "Preferências",
+    "SECURITY": "Segurança",
+    "LANGUAGE": "Idioma",
+    "THEME": "Tema",
+    "LIGHT": "Claro",
+    "DARK": "Escuro",
+    "LOGOUT": "Sair da conta"
+  },
+  "FORM": {
+    "NEW": "Nova Solicitação",
+    "EDIT": "Editar Solicitação",
+    "CLIENT": "Nome do cliente",
+    "CPF": "CPF",
+    "VALUE": "Valor solicitado",
+    "PLACEHOLDER_CLIENT": "Digite o nome do cliente",
+    "PLACEHOLDER_CPF": "Digite somente os 11 números do CPF",
+    "PLACEHOLDER_VALUE": "Digite o valor solicitado",
+    "SAVE": "Salvar",
+    "CANCEL": "Cancelar",
+    "ERROR_NAME": "Nome é obrigatório.",
+    "ERROR_CPF": "CPF deve conter exatamente 11 números."
+  },
+  "ACTIONS": {
+    "REQUESTS": "Solicitações",
+    "NEW_REQUEST": "Nova Solicitação",
+    "EDIT": "Editar",
+    "ANALYZE": "Analisar",
+    "DELETE": "Excluir",
+    "LOGOUT": "Sair",
+    "PROFILE": "Perfil"
+  },
+  "SEARCH": {
+    "PLACEHOLDER": "Buscar cliente"
+  },
+  "FILTER": {
+    "ALL": "Todos"
+  },
+  "STATUS": {
+    "PENDING": "Pendente",
+    "UNDER_ANALYSIS": "Em Análise",
+    "APPROVED": "Aprovado",
+    "REJECTED": "Recusado"
+  },
+  "REQUEST": {
+    "DATE": "Data da Solicitação"
+  }, 
+  "SUMMARY": {
+    "TOTAL_REQUESTS": "Total de Solicitações",
+    "PENDING": "Pendentes",
+    "APPROVED": "Aprovadas",
+    "REJECTED": "Recusadas"
+  }
+}

@@ -1,0 +1,69 @@
+{
+  "APP": {
+    "TITLE": "Credit Requests Dashboard",
+    "SUBTITLE": "Manage and track credit requests"
+  },
+  "LOGIN": {
+    "TITLE": "Sign in to the Credit Dashboard",
+    "DESCRIPTION": "Access your account to view and manage credit requests.",
+    "EMAIL": "Email",
+    "PASSWORD": "Password",
+    "ENTER": "Sign in",
+    "ENTERING": "Signing in...",
+    "GOOGLE": "Sign in with Google"
+  },
+  "PROFILE": {
+    "TITLE": "Profile and Settings",
+    "PREFERENCES": "Preferences",
+    "SECURITY": "Security",
+    "LANGUAGE": "Language",
+    "THEME": "Theme",
+    "LIGHT": "Light",
+    "DARK": "Dark",
+    "LOGOUT": "Sign out"
+  },
+  "FORM": {
+    "NEW": "New Request",
+    "EDIT": "Edit Request",
+    "CLIENT": "Client name",
+    "CPF": "CPF",
+    "VALUE": "Requested amount",
+    "PLACEHOLDER_CLIENT": "Enter the client name",
+    "PLACEHOLDER_CPF": "Enter only the 11 CPF digits",
+    "PLACEHOLDER_VALUE": "Enter the requested amount",
+    "SAVE": "Save",
+    "CANCEL": "Cancel",
+    "ERROR_NAME": "Name is required.",
+    "ERROR_CPF": "CPF must contain exactly 11 digits."
+  },
+  "ACTIONS": {
+    "REQUESTS": "Requests",
+    "NEW_REQUEST": "New Request",
+    "EDIT": "Edit",
+    "ANALYZE": "Review",
+    "DELETE": "Delete",
+    "LOGOUT": "Sign out",
+    "PROFILE": "Profile"
+  },
+  "SEARCH": {
+    "PLACEHOLDER": "Search client"
+  },
+  "FILTER": {
+    "ALL": "All"
+  },
+  "STATUS": {
+    "PENDING": "Pending",
+    "UNDER_ANALYSIS": "Under Review",
+    "APPROVED": "Approved",
+    "REJECTED": "Rejected"
+  },
+  "REQUEST": {
+    "DATE": "Request Date"
+  }, 
+  "SUMMARY": {
+    "TOTAL_REQUESTS": "Total Requests",
+    "PENDING": "Pending",
+    "APPROVED": "Approved",
+    "REJECTED": "Rejected"
+  }
+}

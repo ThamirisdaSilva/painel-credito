@@ -1,26 +1,38 @@
 <div class="login">
   <div class="login__container">
     <div class="login__card">
-      <h2>Acesso</h2>
+      <h2>
+        {{ 'LOGIN.TITLE' | translate }}
+      </h2>
+
+      <p class="login__description">
+        {{ 'LOGIN.DESCRIPTION' | translate }}
+      </p>
 
       <form class="login__form" (ngSubmit)="login()" novalidate>
-        <label class="login__label" for="email">Email</label>
+        <label class="login__label" for="email">
+          {{ 'LOGIN.EMAIL' | translate }}
+        </label>
+
         <input
           id="email"
           type="email"
           name="email"
-          placeholder="Digite seu email"
+          [placeholder]="'LOGIN.EMAIL' | translate"
           class="login__input"
           [(ngModel)]="email"
           autocomplete="email"
         />
 
-        <label class="login__label" for="senha">Senha</label>
+        <label class="login__label" for="senha">
+          {{ 'LOGIN.PASSWORD' | translate }}
+        </label>
+
         <input
           id="senha"
           type="password"
           name="senha"
-          placeholder="Digite sua senha"
+          [placeholder]="'LOGIN.PASSWORD' | translate"
           class="login__input"
           [(ngModel)]="senha"
           autocomplete="current-password"
@@ -33,7 +45,7 @@
         }
 
         <button class="login__button" type="submit" [disabled]="carregando">
-          {{ carregando ? 'Entrando...' : 'Entrar' }}
+          {{ carregando ? ('LOGIN.ENTERING' | translate) : ('LOGIN.ENTER' | translate) }}
         </button>
 
         <button
@@ -42,7 +54,7 @@
           (click)="loginComGoogle()"
           [disabled]="carregando"
         >
-          Entrar com Google
+          {{ 'LOGIN.GOOGLE' | translate }}
         </button>
       </form>
 

@@ -18,6 +18,9 @@ import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
 import { provideAuth, getAuth } from '@angular/fire/auth';
 import { environment } from '../environments/environments';
 
+import { provideTranslateService } from '@ngx-translate/core';
+import { provideTranslateHttpLoader } from '@ngx-translate/http-loader';
+
 registerLocaleData(localePt);
 
 export const appConfig: ApplicationConfig = {
@@ -39,6 +42,15 @@ export const appConfig: ApplicationConfig = {
     provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
 
     provideAuth(() => getAuth()),
+
+    provideTranslateService({
+      fallbackLang: 'pt-BR',
+      lang: 'pt-BR',
+      loader: provideTranslateHttpLoader({
+        prefix: '/assets/i18n/',
+        suffix: '.json',
+      }),
+    }),
 
     provideApollo(() => {
       const httpLink = inject(HttpLink);

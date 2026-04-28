@@ -1,6 +1,7 @@
 import { Injectable, signal, Inject } from '@angular/core';
 import { Apollo, gql } from 'apollo-angular';
 import { map, shareReplay } from 'rxjs/operators';
+import { TranslateService } from '@ngx-translate/core';
 
 import { Solicitacao, StatusSolicitacao } from '../models/solicitacao.model';
 import { STORAGE_KEY } from './storage.token';
@@ -17,6 +18,7 @@ export class SolicitacoesService {
   constructor(
     private apollo: Apollo,
     @Inject(STORAGE_KEY) private storageKey: string,
+    private translate: TranslateService,
   ) {}
 
   solicitacoes = signal<SolicitacaoViewModel[]>([]);
@@ -109,18 +111,21 @@ export class SolicitacoesService {
       recusado: 'card__status--recusado',
     };
 
-    const labelMap: Record<string, string> = {
-      pendente: 'Pendente',
-      em_analise: 'Em Análise',
-      aprovado: 'Aprovado',
-      recusado: 'Recusado',
+    const statusKeyMap: Record<string, string> = {
+      pendente: 'STATUS.PENDING',
+      em_analise: 'STATUS.UNDER_ANALYSIS',
+      aprovado: 'STATUS.APPROVED',
+      recusado: 'STATUS.REJECTED',
     };
+
+    const statusKey = statusKeyMap[status];
+    const statusLabel = statusKey ? this.translate.instant(statusKey) : s.status;
 
     return {
       ...s,
       status: status as StatusSolicitacao,
       statusClass: classMap[status] ?? '',
-      statusLabel: labelMap[status] ?? s.status,
+      statusLabel,
     };
   }
 

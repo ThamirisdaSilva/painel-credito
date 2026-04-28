@@ -1,13 +1,15 @@
 import { Component, HostListener, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
+import { TranslatePipe } from '@ngx-translate/core';
 
 import { AuthService } from '../../../services/auth.service';
+import { PreferencesService } from '../../../services/preferences.service';
 
 @Component({
   standalone: true,
   selector: 'app-header',
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink, TranslatePipe],
   templateUrl: './header.html',
   styleUrls: ['./header.scss'],
 })
@@ -18,6 +20,7 @@ export class HeaderComponent implements OnInit {
 
   constructor(
     public authService: AuthService,
+    public preferencesService: PreferencesService,
     private router: Router,
   ) {}
 

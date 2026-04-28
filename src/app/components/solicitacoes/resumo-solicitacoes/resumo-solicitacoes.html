@@ -1,6 +1,6 @@
 <div>
-  Total: {{ resumo().total }} |
-  Aprovadas: {{ resumo().aprovadas }} |
-  Pendentes: {{ resumo().pendentes }} |
-  Recusadas: {{ resumo().recusadas }}
+  {{ 'SUMMARY.TOTAL_REQUESTS' | translate }}: {{ resumo().total }} |
+  {{ 'SUMMARY.APPROVED' | translate }}: {{ resumo().aprovadas }} |
+  {{ 'SUMMARY.PENDING' | translate }}: {{ resumo().pendentes }} |
+  {{ 'SUMMARY.REJECTED' | translate }}: {{ resumo().recusadas }}
 </div>

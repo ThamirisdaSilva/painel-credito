@@ -5,14 +5,28 @@
 
   <div class="header__container">
     <div>
-      <h1 class="header__title">{{ title }}</h1>
+      <h1 class="header__title">
+        {{ title }}
+      </h1>
 
-      <p class="header__subtitle">Gerencie e acompanhe as solicitações de crédito</p>
+      <p class="header__subtitle">
+        {{ 'APP.SUBTITLE' | translate }}
+      </p>
     </div>
 
     @if (authService.usuario() && !estaNaTelaLogin()) {
       <div class="header__auth">
-        <button type="button" class="header__logout" (click)="logout()">Sair</button>
+        <a class="header__link" routerLink="/solicitacoes">
+          {{ 'ACTIONS.REQUESTS' | translate }}
+        </a>
+
+        <a class="header__link" routerLink="/perfil">
+          {{ 'ACTIONS.PROFILE' | translate }}
+        </a>
+
+        <button type="button" class="header__logout" (click)="logout()">
+          {{ 'ACTIONS.LOGOUT' | translate }}
+        </button>
       </div>
     }
   </div>

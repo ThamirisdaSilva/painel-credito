@@ -1,29 +1,39 @@
 <div class="form-container">
-  <h2>{{ modoEdicao ? 'Editar Solicitação' : 'Nova Solicitação' }}</h2>
+  <h2>
+    {{ modoEdicao ? ('FORM.EDIT' | translate) : ('FORM.NEW' | translate) }}
+  </h2>
 
   <form (ngSubmit)="salvar()" novalidate>
-    <label for="cliente">Nome do cliente</label>
+    <label for="cliente">
+      {{ 'FORM.CLIENT' | translate }}
+    </label>
+
     <input
       id="cliente"
       type="text"
       [(ngModel)]="cliente"
       name="cliente"
-      placeholder="Digite o nome do cliente"
+      [placeholder]="'FORM.PLACEHOLDER_CLIENT' | translate"
       [attr.aria-invalid]="nomeInvalido"
       aria-describedby="erro-cliente"
     />
 
     @if (nomeInvalido) {
-      <small id="erro-cliente" class="erro" aria-live="polite"> Nome é obrigatório. </small>
+      <small id="erro-cliente" class="erro" aria-live="polite">
+        {{ 'FORM.ERROR_NAME' | translate }}
+      </small>
     }
 
-    <label for="documento">CPF</label>
+    <label for="documento">
+      {{ 'FORM.CPF' | translate }}
+    </label>
+
     <input
       id="documento"
       type="text"
       [(ngModel)]="documento"
       name="documento"
-      placeholder="Digite somente os 11 números do CPF"
+      [placeholder]="'FORM.PLACEHOLDER_CPF' | translate"
       maxlength="11"
       inputmode="numeric"
       (input)="apenasNumeros($event)"
@@ -33,23 +43,30 @@
 
     @if (cpfInvalido) {
       <small id="erro-documento" class="erro" aria-live="polite">
-        CPF deve conter exatamente 11 números.
+        {{ 'FORM.ERROR_CPF' | translate }}
       </small>
     }
 
-    <label for="valor">Valor solicitado</label>
+    <label for="valor">
+      {{ 'FORM.VALUE' | translate }}
+    </label>
+
     <input
       id="valor"
       type="number"
       [(ngModel)]="valor"
       name="valor"
-      placeholder="Digite o valor solicitado"
+      [placeholder]="'FORM.PLACEHOLDER_VALUE' | translate"
     />
 
     <div class="form-acoes">
-      <button class="btn-salvar" type="submit">Salvar</button>
+      <button class="btn-salvar" type="submit">
+        {{ 'FORM.SAVE' | translate }}
+      </button>
 
-      <button class="btn-cancelar" type="button" (click)="cancelar()">Cancelar</button>
+      <button class="btn-cancelar" type="button" (click)="cancelar()">
+        {{ 'FORM.CANCEL' | translate }}
+      </button>
     </div>
   </form>
 </div>

@@ -1,0 +1,106 @@
+<app-header [title]="'PROFILE.TITLE' | translate"></app-header>
+
+<main class="perfil">
+  <section class="perfil-card" aria-labelledby="titulo-perfil">
+    <div class="perfil-card__header">
+      @if (authService.usuario()?.photoURL) {
+        <img
+          class="perfil-card__foto"
+          [src]="authService.usuario()?.photoURL"
+          alt="Foto do usuário logado"
+        />
+      } @else {
+        <div class="perfil-card__avatar" aria-hidden="true">
+          {{ authService.usuario()?.email?.charAt(0)?.toUpperCase() }}
+        </div>
+      }
+
+      <div>
+        <h2 id="titulo-perfil">
+          {{ authService.usuario()?.displayName || 'Usuário logado' }}
+        </h2>
+
+        <p>
+          {{ authService.usuario()?.email }}
+        </p>
+      </div>
+    </div>
+
+    <div class="perfil-card__info">
+      <p>
+        <strong>Provedor:</strong>
+        {{ authService.usuario()?.providerData?.[0]?.providerId || 'email/senha' }}
+      </p>
+
+      @if (authService.ultimoAcesso()) {
+        <p>
+          <strong>Último acesso:</strong>
+          {{ authService.ultimoAcesso()?.date | date: 'dd/MM/yyyy HH:mm' }}
+        </p>
+
+        <p>
+          <strong>Tipo de login:</strong>
+          {{ authService.ultimoAcesso()?.provider }}
+        </p>
+      }
+    </div>
+  </section>
+
+  <section class="preferencias-card" aria-labelledby="titulo-preferencias">
+    <h2 id="titulo-preferencias">
+      {{ 'PROFILE.PREFERENCES' | translate }}
+    </h2>
+
+    <div class="campo">
+      <label for="idioma">
+        {{ 'PROFILE.LANGUAGE' | translate }}
+      </label>
+
+      <select
+        id="idioma"
+        [value]="preferencesService.preferences().language"
+        (change)="alterarIdioma($event)"
+      >
+        <option value="pt-BR">Português</option>
+        <option value="en-US">English</option>
+      </select>
+    </div>
+
+    <div class="campo">
+      <label for="tema">
+        {{ 'PROFILE.THEME' | translate }}
+      </label>
+
+      <select
+        id="tema"
+        [value]="preferencesService.preferences().theme"
+        (change)="alterarTema($event)"
+      >
+        <option value="light">
+          {{ 'PROFILE.LIGHT' | translate }}
+        </option>
+
+        <option value="dark">
+          {{ 'PROFILE.DARK' | translate }}
+        </option>
+      </select>
+    </div>
+  </section>
+
+  <section class="seguranca-card" aria-labelledby="titulo-seguranca">
+    <h2 id="titulo-seguranca">
+      {{ 'PROFILE.SECURITY' | translate }}
+    </h2>
+
+    <p>Nesta versão, o sistema registra o último acesso com data, email, provedor e navegador.</p>
+
+    <p>
+      Em uma aplicação real, informações como IP, localização aproximada e auditoria completa devem
+      ser registradas no backend.
+    </p>
+
+    <button type="button" class="btn-sair" (click)="sair()">
+      {{ 'PROFILE.LOGOUT' | translate }}
+    </button>
+  </section>
+</main>
