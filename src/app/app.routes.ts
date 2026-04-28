@@ -22,7 +22,7 @@ export const routes: Routes = [
     canActivate: [authGuard],
   },
 
-  // ROTAS ESPECÍFICAS PRIMEIRO
+  // ROTAS ESPECÍFICAS DE SOLICITAÇÕES PRIMEIRO
 
   {
     path: 'solicitacoes/nova',
@@ -32,6 +32,7 @@ export const routes: Routes = [
       ),
     canActivate: [authGuard],
   },
+
   {
     path: 'solicitacoes/editar/:id',
     loadComponent: () =>
@@ -41,21 +42,31 @@ export const routes: Routes = [
     canActivate: [authGuard],
   },
 
-  // ROTA GENÉRICA SEMPRE POR ÚLTIMO
+  {
+    path: 'perfil',
+    loadComponent: () =>
+      import('./components/perfil/perfil-usuario/perfil-usuario').then(
+        (m) => m.PerfilUsuarioComponent,
+      ),
+    canActivate: [authGuard],
+  },
+
+  {
+    path: 'atividades',
+    loadComponent: () =>
+      import('./components/atividades/atividades-lista/atividades-lista').then(
+        (m) => m.AtividadesListaComponent,
+      ),
+    canActivate: [authGuard],
+  },
+
+  // ROTA GENÉRICA DE SOLICITAÇÃO SEMPRE DEPOIS DAS ROTAS ESPECÍFICAS
 
   {
     path: 'solicitacoes/:id',
     loadComponent: () =>
       import('./components/solicitacoes/solicitacao-detalhe/solicitacao-detalhe').then(
         (m) => m.SolicitacaoDetalheComponent,
-      ),
-    canActivate: [authGuard],
-  },
-  {
-    path: 'perfil',
-    loadComponent: () =>
-      import('./components/perfil/perfil-usuario/perfil-usuario').then(
-        (m) => m.PerfilUsuarioComponent,
       ),
     canActivate: [authGuard],
   },

@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { AuthService } from '../../../services/auth.service';
+import { AtividadesService } from '../../../services/atividades.service';
 
 @Component({
   selector: 'app-login',
@@ -19,21 +20,25 @@ export class LoginComponent {
 
   constructor(
     public authService: AuthService,
+    private atividadesService: AtividadesService,
     private router: Router,
   ) {}
 
   async login() {
-    console.log('Tentando login com:', this.email);
-
     this.carregando = true;
 
     const usuario = await this.authService.loginComEmailSenha(this.email, this.senha);
 
     this.carregando = false;
 
-    console.log('Usuário retornado:', usuario);
-
     if (usuario) {
+      await this.atividadesService.registrarAtividade({
+        tipo: 'login',
+        descricao: `Login realizado com email e senha por ${usuario.email}`,
+        entidade: 'usuario',
+        entidadeId: usuario.uid,
+      });
+
       this.router.navigate(['/solicitacoes']);
     }
   }
@@ -46,6 +51,13 @@ export class LoginComponent {
     this.carregando = false;
 
     if (usuario) {
+      await this.atividadesService.registrarAtividade({
+        tipo: 'login',
+        descricao: `Login realizado com Google por ${usuario.email}`,
+        entidade: 'usuario',
+        entidadeId: usuario.uid,
+      });
+
       this.router.navigate(['/solicitacoes']);
     }
   }

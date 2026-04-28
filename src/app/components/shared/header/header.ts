@@ -5,6 +5,7 @@ import { TranslatePipe } from '@ngx-translate/core';
 
 import { AuthService } from '../../../services/auth.service';
 import { PreferencesService } from '../../../services/preferences.service';
+import { AtividadesService } from '../../../services/atividades.service';
 
 @Component({
   standalone: true,
@@ -21,6 +22,7 @@ export class HeaderComponent implements OnInit {
   constructor(
     public authService: AuthService,
     public preferencesService: PreferencesService,
+    private atividadesService: AtividadesService,
     private router: Router,
   ) {}
 
@@ -43,7 +45,14 @@ export class HeaderComponent implements OnInit {
   }
 
   async logout() {
+    await this.atividadesService.registrarAtividade({
+      tipo: 'logout',
+      descricao: 'Usuário saiu da aplicação',
+      entidade: 'usuario',
+    });
+
     await this.authService.logout();
+
     this.router.navigate(['/login']);
   }
 }
