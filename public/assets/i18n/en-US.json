@@ -1,6 +1,7 @@
 {
   "APP": {
-    "TITLE": "Credit Requests Dashboard"
+    "TITLE": "Credit Requests Dashboard", 
+    "SUBTITLE": "Manage and track credit requests"
   },
   "LOGIN": {
     "TITLE": "Sign in to the Credit Dashboard",

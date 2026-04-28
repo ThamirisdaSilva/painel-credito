@@ -1,6 +1,7 @@
 {
   "APP": {
-    "TITLE": "Pannello delle Richieste di Credito"
+    "TITLE": "Pannello delle Richieste di Credito", 
+      "SUBTITLE": "Gestisci e monitora le richieste di credito"
   },
   "LOGIN": {
     "TITLE": "Accedere al Pannello di Credito",
