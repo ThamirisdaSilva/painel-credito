@@ -733,6 +733,125 @@ src/app/components/solicitacoes/solicitacao-form/solicitacao-form.html
 
 ---
 
+
+# AJUSTAR DETALHES
+
+# solicitacao-detalhes.ts
+
+```ts 
+import { CommonModule } from '@angular/common';
+import { Component, OnInit, computed, inject, signal } from '@angular/core';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+
+import { SolicitacoesFacade } from '../../../services/solicitacoes.facade';
+
+@Component({
+  selector: 'app-solicitacao-detalhe',
+  standalone: true,
+  imports: [CommonModule, RouterLink],
+  templateUrl: './solicitacao-detalhe.html',
+  styleUrl: './solicitacao-detalhe.scss',
+})
+export class SolicitacaoDetalheComponent implements OnInit {
+  private router = inject(Router);
+  private route = inject(ActivatedRoute);
+
+  public facade = inject(SolicitacoesFacade);
+
+  id = signal<string | null>(null);
+
+  item = computed(() => {
+    const idValue = this.id();
+
+    if (!idValue) {
+      return undefined;
+    }
+
+    return this.facade.lista().find((solicitacao) => solicitacao.id === idValue);
+  });
+
+  ngOnInit() {
+    const routeId = this.route.snapshot.paramMap.get('id');
+
+    this.id.set(routeId);
+    this.facade.carregar();
+  }
+
+  async aprovar() {
+    const idValue = this.id();
+
+    if (!idValue) {
+      return;
+    }
+
+    await this.facade.atualizarStatus(idValue, 'aprovado');
+
+    this.router.navigate(['/solicitacoes']);
+  }
+
+  async reprovar() {
+    const idValue = this.id();
+
+    if (!idValue) {
+      return;
+    }
+
+    await this.facade.atualizarStatus(idValue, 'recusado');
+
+    this.router.navigate(['/solicitacoes']);
+  }
+}
+``` 
+
+
+# solicitacao-detalhes.html
+
+```html
+ <div class="detalhe-container">
+  <button class="btn-back" routerLink="/solicitacoes">← Voltar para a lista</button>
+
+  @if (item(); as solicitacao) {
+    <header class="detalhe-header">
+      <h1>{{ solicitacao.cliente }}</h1>
+
+      <span class="status-badge" [ngClass]="solicitacao.statusClass">
+        {{ solicitacao.statusLabel }}
+      </span>
+    </header>
+
+    <section class="detalhe-content">
+      <div class="info-group">
+        <span class="label">Documento</span>
+        <span class="value">{{ solicitacao.documento }}</span>
+      </div>
+
+      <div class="info-group">
+        <span class="label">Valor Solicitado</span>
+        <span class="value value--destaque">
+          {{ solicitacao.valor | currency: 'BRL' }}
+        </span>
+      </div>
+
+      <div class="info-group">
+        <span class="label">Data da Solicitação</span>
+        <span class="value">
+          {{ solicitacao.dataSolicitacao | date: 'dd/MM/yyyy' }}
+        </span>
+      </div>
+    </section>
+
+    <div class="detalhe-actions">
+      <button type="button" class="btn-aprovar" (click)="aprovar()">Aprovar</button>
+
+      <button type="button" class="btn-reprovar" (click)="reprovar()">Reprovar</button>
+    </div>
+  } @else {
+    <p>Carregando solicitação...</p>
+  }
+</div>
+
+``` 
+
 # PARTE 8 — AJUSTAR LISTA DE SOLICITAÇÕES
 
 ## Arquivo
