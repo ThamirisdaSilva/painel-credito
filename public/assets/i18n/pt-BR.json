@@ -1,6 +1,7 @@
 {
   "APP": {
-    "TITLE": "Painel de Solicitações de Crédito"
+    "TITLE": "Painel de Solicitações de Crédito", 
+      "SUBTITLE": "Gerencie e acompanhe as solicitações de crédito"
   },
   "LOGIN": {
     "TITLE": "Entrar no Painel de Crédito",
@@ -30,6 +31,9 @@
     "CLIENT": "Nome do cliente",
     "CPF": "CPF",
     "VALUE": "Valor solicitado",
+    "PLACEHOLDER_CLIENT": "Enter client name",
+    "PLACEHOLDER_CPF": "Enter only the 11 digits of the CPF",
+    "PLACEHOLDER_VALUE": "Enter requested amount",
     "SAVE": "Salvar",
     "CANCEL": "Cancelar",
     "ERROR_NAME": "Nome é obrigatório.",
@@ -58,5 +62,11 @@
   "PENDING": "Pendente",
   "APPROVED": "Aprovado",
   "REJECTED": "Recusado"
+},
+"ACCESSIBILITY": {
+  "OPEN_REQUEST": "Abrir detalhes da solicitação de",
+  "EDIT_REQUEST": "Editar solicitação de",
+  "ANALYZE_REQUEST": "Analisar solicitação de",
+  "DELETE_REQUEST": "Excluir solicitação de"
 }
 }

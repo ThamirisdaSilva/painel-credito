@@ -8,6 +8,18 @@
   min-height: 100vh;
 }
 
+/* FEEDBACK ACESSÍVEL */
+.feedback {
+  margin: 1rem 0;
+  padding: 0.85rem 1rem;
+  border-radius: 10px;
+  background: var(--card-bg);
+  color: var(--text-main);
+  border: 1px solid var(--border);
+  font-weight: 600;
+  box-shadow: var(--shadow);
+}
+
 /* RESUMO */
 app-resumo-solicitacoes {
   display: flex;
@@ -142,7 +154,7 @@ app-filtro-solicitacoes select:focus {
   font-size: 1rem;
 }
 
-/* VIRTUAL SCROLL (SE USAR) */
+/* VIRTUAL SCROLL */
 .viewport {
   height: 600px;
   width: 100%;

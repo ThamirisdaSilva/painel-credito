@@ -1,9 +1,17 @@
-import { Injectable, signal, Inject } from '@angular/core';
-import { Apollo, gql } from 'apollo-angular';
-import { map, shareReplay } from 'rxjs/operators';
+import { Injectable, signal } from '@angular/core';
+import {
+  Firestore,
+  addDoc,
+  collection,
+  collectionData,
+  deleteDoc,
+  doc,
+  updateDoc,
+} from '@angular/fire/firestore';
 
 import { Solicitacao, StatusSolicitacao } from '../models/solicitacao.model';
-import { STORAGE_KEY } from './storage.token';
+import { AtividadesService } from './atividades.service';
+import { AuthService } from './auth.service';
 
 export interface SolicitacaoViewModel extends Solicitacao {
   statusClass: string;
@@ -14,91 +22,151 @@ export interface SolicitacaoViewModel extends Solicitacao {
   providedIn: 'root',
 })
 export class SolicitacoesService {
-  constructor(
-    private apollo: Apollo,
-    @Inject(STORAGE_KEY) private storageKey: string,
-  ) {}
+  private collectionName = 'solicitacoes';
 
   solicitacoes = signal<SolicitacaoViewModel[]>([]);
   loading = signal(false);
   error = signal<string | null>(null);
+  feedback = signal<string | null>(null);
 
-  // MÉTODO COM CACHE (shareReplay)
-  getSolicitacoes$() {
-    return this.apollo
-      .query<{ solicitacoes: Solicitacao[] }>({
-        query: gql`
-          query {
-            solicitacoes {
-              id
-              cliente
-              documento
-              valor
-              status
-              dataSolicitacao
-            }
-          }
-        `,
-        fetchPolicy: 'cache-first',
-      })
-      .pipe(
-        map((result) => result.data?.solicitacoes || []),
-        shareReplay(1),
-      );
-  }
+  constructor(
+    private firestore: Firestore,
+    private atividadesService: AtividadesService,
+    private authService: AuthService,
+  ) {}
 
-  // LOCAL STORAGE
-  getDadosPersistidos(): SolicitacaoViewModel[] {
-    const dados = localStorage.getItem(this.storageKey);
-
-    if (dados) {
-      const lista = JSON.parse(dados);
-
-      return lista.map((item: any) =>
-        this.mapToViewModel({
-          ...item,
-          status: item.status as StatusSolicitacao,
-        }),
-      );
-    }
-
-    return [];
-  }
-
-  salvar(lista: SolicitacaoViewModel[]) {
-    localStorage.setItem(this.storageKey, JSON.stringify(lista));
-  }
-
-  // CARREGAMENTO DE DADOS
   carregarSolicitacoes() {
     this.loading.set(true);
     this.error.set(null);
 
-    const local = this.getDadosPersistidos();
+    const solicitacoesRef = collection(this.firestore, this.collectionName);
 
-    if (local.length > 0) {
-      this.solicitacoes.set(local);
-      this.loading.set(false);
-      return;
-    }
-
-    this.getSolicitacoes$().subscribe({
+    collectionData(solicitacoesRef, {
+      idField: 'id',
+    }).subscribe({
       next: (data) => {
-        const viewModel = data.map((s) => this.mapToViewModel(s));
+        const lista = data as Solicitacao[];
+
+        const viewModel = lista.map((item) => this.mapToViewModel(item));
 
         this.solicitacoes.set(viewModel);
-        this.salvar(viewModel);
-
         this.loading.set(false);
       },
-      error: () => {
-        this.error.set('Erro ao buscar API GraphQL');
+      error: (error) => {
+        console.error('Erro ao carregar solicitações:', error);
+
+        this.error.set('Erro ao carregar solicitações do Firebase.');
         this.loading.set(false);
       },
     });
   }
 
-  // VIEW MODEL
+  async criarSolicitacao(dados: { cliente: string; documento: string; valor: number }) {
+    const usuario = this.authService.usuario();
+
+    const novaSolicitacao: Omit<Solicitacao, 'id'> = {
+      cliente: dados.cliente,
+      documento: dados.documento,
+      valor: dados.valor,
+      status: 'pendente',
+      dataSolicitacao: new Date().toISOString(),
+      criadoPor: usuario?.email ?? null,
+      criadoEm: new Date().toISOString(),
+      atualizadoEm: new Date().toISOString(),
+    };
+
+    const solicitacoesRef = collection(this.firestore, this.collectionName);
+
+    const documentoCriado = await addDoc(solicitacoesRef, novaSolicitacao);
+
+    this.exibirFeedback('Solicitação criada com sucesso.');
+
+    await this.atividadesService.registrarAtividade({
+      tipo: 'solicitacao_criada',
+      descricao: `Solicitação criada para ${dados.cliente}`,
+      entidade: 'solicitacao',
+      entidadeId: documentoCriado.id,
+    });
+  }
+
+  async editarSolicitacao(
+    id: string,
+    dados: {
+      cliente: string;
+      documento: string;
+      valor: number;
+    },
+  ) {
+    const solicitacaoRef = doc(this.firestore, `${this.collectionName}/${id}`);
+
+    await updateDoc(solicitacaoRef, {
+      cliente: dados.cliente,
+      documento: dados.documento,
+      valor: dados.valor,
+      atualizadoEm: new Date().toISOString(),
+    });
+
+    this.exibirFeedback('Solicitação atualizada com sucesso.');
+
+    await this.atividadesService.registrarAtividade({
+      tipo: 'solicitacao_editada',
+      descricao: `Solicitação editada para ${dados.cliente}`,
+      entidade: 'solicitacao',
+      entidadeId: id,
+    });
+  }
+
+  async atualizarStatus(id: string, novoStatus: StatusSolicitacao) {
+    const solicitacao = this.solicitacoes().find((item) => item.id === id);
+
+    const solicitacaoRef = doc(this.firestore, `${this.collectionName}/${id}`);
+
+    await updateDoc(solicitacaoRef, {
+      status: novoStatus,
+      atualizadoEm: new Date().toISOString(),
+    });
+
+    this.exibirFeedback('Status atualizado com sucesso.');
+
+    await this.atividadesService.registrarAtividade({
+      tipo: 'status_atualizado',
+      descricao: `Status da solicitação de ${
+        solicitacao?.cliente ?? 'cliente'
+      } alterado para ${novoStatus}`,
+      entidade: 'solicitacao',
+      entidadeId: id,
+    });
+  }
+
+  async excluirSolicitacao(id: string) {
+    const solicitacao = this.solicitacoes().find((item) => item.id === id);
+
+    const solicitacaoRef = doc(this.firestore, `${this.collectionName}/${id}`);
+
+    await deleteDoc(solicitacaoRef);
+
+    this.exibirFeedback('Solicitação excluída com sucesso.');
+
+    await this.atividadesService.registrarAtividade({
+      tipo: 'solicitacao_excluida',
+      descricao: `Solicitação de ${solicitacao?.cliente ?? 'cliente'} excluída`,
+      entidade: 'solicitacao',
+      entidadeId: id,
+    });
+  }
+
+  limparFeedback() {
+    this.feedback.set(null);
+  }
+
+  private exibirFeedback(mensagem: string) {
+    this.feedback.set(mensagem);
+
+    setTimeout(() => {
+      this.feedback.set(null);
+    }, 4000);
+  }
+
   private mapToViewModel(s: Solicitacao): SolicitacaoViewModel {
     const status = s.status?.toLowerCase() ?? '';
 
@@ -122,19 +190,5 @@ export class SolicitacoesService {
       statusClass: classMap[status] ?? '',
       statusLabel: labelMap[status] ?? s.status,
     };
-  }
-
-  // ATUALIZAÇÃO DE STATUS
-  atualizarStatus(id: number | string, novoStatus: StatusSolicitacao) {
-    this.solicitacoes.update((lista) => {
-      const novaLista = lista.map((item) =>
-        String(item.id) === String(id)
-          ? this.mapToViewModel({ ...item, status: novoStatus })
-          : item,
-      );
-
-      this.salvar(novaLista);
-      return novaLista;
-    });
   }
 }

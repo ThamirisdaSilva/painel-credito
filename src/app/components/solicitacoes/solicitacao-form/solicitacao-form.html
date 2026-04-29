@@ -13,7 +13,7 @@
       type="text"
       [(ngModel)]="cliente"
       name="cliente"
-      placeholder="Digite o nome do cliente"
+      [placeholder]="'FORM.PLACEHOLDER_CLIENT' | translate"
       [attr.aria-invalid]="nomeInvalido"
       aria-describedby="erro-cliente"
     />
@@ -33,7 +33,7 @@
       type="text"
       [(ngModel)]="documento"
       name="documento"
-      placeholder="Digite somente os 11 números do CPF"
+      [placeholder]="'FORM.PLACEHOLDER_CPF' | translate"
       maxlength="11"
       inputmode="numeric"
       (input)="apenasNumeros($event)"
@@ -56,7 +56,7 @@
       type="number"
       [(ngModel)]="valor"
       name="valor"
-      placeholder="Digite o valor solicitado"
+      [placeholder]="'FORM.PLACEHOLDER_VALUE' | translate"
     />
 
     <div class="form-acoes">

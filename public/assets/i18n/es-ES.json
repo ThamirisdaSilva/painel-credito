@@ -75,6 +75,12 @@
     "DESCRIPTION": "Registra automáticamente los inicios de sesión, los cambios de solicitudes y los cambios de preferencias.",
     "BACK": "Volver a las solicitudes",
     "MESSAGE": "Actualizaciones en tiempo real habilitadas"
-    }
+    },
+  "ACCESSIBILITY": {
+    "OPEN_REQUEST": "Abrir detalles de la solicitud de",
+    "EDIT_REQUEST": "Editar solicitud de",
+    "ANALYZE_REQUEST": "Analizar solicitud de",
+    "DELETE_REQUEST": "Eliminar solicitud de"
+}
 }
  

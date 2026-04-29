@@ -1,6 +1,7 @@
 {
   "APP": {
-    "TITLE": "Credit Requests Dashboard"
+    "TITLE": "Credit Requests Dashboard", 
+    "SUBTITLE": "Manage and track credit requests"
   },
   "LOGIN": {
     "TITLE": "Sign in to the Credit Dashboard",
@@ -30,6 +31,9 @@
     "CLIENT": "Client name",
     "CPF": "CPF",
     "VALUE": "Requested amount",
+    "PLACEHOLDER_CLIENT": "Enter client name",
+    "PLACEHOLDER_CPF": "Enter only the 11 digits of the CPF",
+    "PLACEHOLDER_VALUE": "Enter requested amount",
     "SAVE": "Save",
     "CANCEL": "Cancel",
     "ERROR_NAME": "Name is required.",
@@ -58,5 +62,11 @@
   "PENDING": "Pending",
   "APPROVED": "Approved",
   "REJECTED": "Rejected"
+},
+"ACCESSIBILITY": {
+  "OPEN_REQUEST": "Open request of",
+  "EDIT_REQUEST": "Edit request of",
+  "ANALYZE_REQUEST": "Analyze request of",
+  "DELETE_REQUEST": "Delete request of"
 }
 }

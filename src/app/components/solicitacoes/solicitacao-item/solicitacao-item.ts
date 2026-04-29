@@ -23,14 +23,26 @@ export class SolicitacaoItemComponent {
   ) {}
 
   irParaDetalhe() {
+    if (!this.solicitacao.id) {
+      return;
+    }
+
     this.router.navigate(['/solicitacoes', this.solicitacao.id]);
   }
 
   editar() {
+    if (!this.solicitacao.id) {
+      return;
+    }
+
     this.router.navigate(['/solicitacoes/editar', this.solicitacao.id]);
   }
 
   deletar() {
+    if (!this.solicitacao.id) {
+      return;
+    }
+
     this.facade.deletar(this.solicitacao.id);
   }
 }

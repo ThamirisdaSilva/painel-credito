@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { TranslatePipe } from '@ngx-translate/core';
 
 import { SolicitacoesFacade } from '../../../services/solicitacoes.facade';
 import { StatusSolicitacao } from '../../../models/solicitacao.model';
-import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-solicitacao-form',
@@ -20,7 +20,7 @@ export class SolicitacaoFormComponent implements OnInit {
   valor: number = 0;
 
   modoEdicao = false;
-  idEdicao: number | null = null;
+  idEdicao: string | null = null;
 
   nomeInvalido = false;
   cpfInvalido = false;
@@ -35,12 +35,10 @@ export class SolicitacaoFormComponent implements OnInit {
     const idParam = this.route.snapshot.paramMap.get('id');
 
     if (idParam) {
-      const id = Number(idParam);
-
       this.modoEdicao = true;
-      this.idEdicao = id;
+      this.idEdicao = idParam;
 
-      const item = this.facade.getById(id);
+      const item = this.facade.getById(idParam);
 
       if (item) {
         this.cliente = item.cliente;
@@ -52,11 +50,12 @@ export class SolicitacaoFormComponent implements OnInit {
 
   apenasNumeros(event: Event) {
     const input = event.target as HTMLInputElement;
+
     input.value = input.value.replace(/\D/g, '');
     this.documento = input.value;
   }
 
-  salvar() {
+  async salvar() {
     this.nomeInvalido = this.cliente.trim() === '';
     this.cpfInvalido = !/^\d{11}$/.test(this.documento);
 
@@ -64,28 +63,18 @@ export class SolicitacaoFormComponent implements OnInit {
       return;
     }
 
+    const dados = {
+      cliente: this.cliente.trim(),
+      documento: this.documento,
+      valor: this.valor,
+      dataSolicitacao: new Date().toISOString(),
+      status: 'pendente' as StatusSolicitacao,
+    };
+
     if (this.modoEdicao && this.idEdicao) {
-      this.facade.editar(this.idEdicao, {
-        id: this.idEdicao,
-        cliente: this.cliente.trim(),
-        documento: this.documento,
-        valor: this.valor,
-        dataSolicitacao: new Date().toISOString(),
-        status: 'pendente' as StatusSolicitacao,
-        statusClass: '',
-        statusLabel: '',
-      });
+      await this.facade.editar(this.idEdicao, dados);
     } else {
-      this.facade.criar({
-        id: Date.now(),
-        cliente: this.cliente.trim(),
-        documento: this.documento,
-        valor: this.valor,
-        dataSolicitacao: new Date().toISOString(),
-        status: 'pendente' as StatusSolicitacao,
-        statusClass: '',
-        statusLabel: '',
-      });
+      await this.facade.criar(dados);
     }
 
     this.router.navigate(['/solicitacoes']);

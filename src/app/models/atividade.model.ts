@@ -8,7 +8,11 @@ export type TipoAtividade =
   | 'exclusao'
   | 'tema'
   | 'idioma'
-  | 'erro';
+  | 'erro'
+  | 'solicitacao_criada'
+  | 'solicitacao_editada'
+  | 'solicitacao_excluida'
+  | 'status_atualizado';
 
 export interface Atividade {
   id?: string;
