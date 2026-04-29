@@ -54,6 +54,13 @@
   "REQUEST": {
     "DATE": "Data da Solicitação"
   },
+    "SUMMARY": {
+    "TOTAL_REQUESTS": "Total de Solicitações",
+    "APPROVED": "Aprovadas",
+    "PENDING": "Pendentes",
+    "IN_ANALYSIS": "Em Análise",
+    "REJECTED": "Recusadas"
+  },
   "SEARCH": {
     "PLACEHOLDER": "Buscar cliente"
   },

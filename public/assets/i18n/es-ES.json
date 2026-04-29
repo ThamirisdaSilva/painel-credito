@@ -70,6 +70,7 @@
     "TOTAL_REQUESTS": "Total de Solicitudes",
     "PENDING": "Pendientes",
     "APPROVED": "Aprobadas",
+    "IN_ANALYSIS": "En Análisis",
     "REJECTED": "Rechazadas"
   },
   "ACTIVITIES": {
@@ -93,5 +94,4 @@
   },
    "CONFIRM": {
   "DELETE_REQUEST": "¿Estás seguro de que deseas eliminar esta solicitud?"
-}
-}
+}}

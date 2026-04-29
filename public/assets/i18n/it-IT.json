@@ -54,6 +54,13 @@
   "REQUEST": {
     "DATE": "Data della Richiesta"
   },
+    "SUMMARY": {
+    "TOTAL_REQUESTS": "Richieste Totali",
+    "APPROVED": "Approvate",
+    "PENDING": "In Attesa",
+    "IN_ANALYSIS": "In Analisi",
+    "REJECTED": "Rifiutate"
+  },
   "SEARCH": {
     "PLACEHOLDER": "Cerca cliente"
   },
