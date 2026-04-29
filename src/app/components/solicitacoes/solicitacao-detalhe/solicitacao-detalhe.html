@@ -1,43 +1,42 @@
 <div class="detalhe-container">
   <button class="btn-back" routerLink="/solicitacoes">← Voltar para a lista</button>
 
-  @if (service.loading()) {
-    <p>Carregando...</p>
-  } @else if (item()) {
+  @if (item(); as solicitacao) {
     <header class="detalhe-header">
-      <h1>{{ item()?.cliente }}</h1>
+      <h1>{{ solicitacao.cliente }}</h1>
 
-      <span class="status-badge" [ngClass]="item()?.statusClass">
-        {{ item()?.statusLabel }}
+      <span class="status-badge" [ngClass]="solicitacao.statusClass">
+        {{ solicitacao.statusLabel }}
       </span>
     </header>
 
     <section class="detalhe-content">
       <div class="info-group">
         <span class="label">Documento</span>
-        <span class="value">{{ item()?.documento }}</span>
+        <span class="value">{{ solicitacao.documento }}</span>
       </div>
 
       <div class="info-group">
         <span class="label">Valor Solicitado</span>
         <span class="value value--destaque">
-          {{ item()?.valor | currency: 'BRL' }}
+          {{ solicitacao.valor | currency: 'BRL' }}
         </span>
       </div>
 
       <div class="info-group">
         <span class="label">Data da Solicitação</span>
         <span class="value">
-          {{ item()?.dataSolicitacao | date: 'dd/MM/yyyy' }}
+          {{ solicitacao.dataSolicitacao | date: 'dd/MM/yyyy' }}
         </span>
       </div>
     </section>
 
-    <footer class="detalhe-actions">
-      <button class="btn-aprovar" (click)="aprovar()">Aprovar</button>
-      <button class="btn-reprovar" (click)="reprovar()">Reprovar</button>
-    </footer>
+    <div class="detalhe-actions">
+      <button type="button" class="btn-aprovar" (click)="aprovar()">Aprovar</button>
+
+      <button type="button" class="btn-reprovar" (click)="reprovar()">Reprovar</button>
+    </div>
   } @else {
-    <p>Item não encontrado</p>
+    <p>Carregando solicitação...</p>
   }
 </div>

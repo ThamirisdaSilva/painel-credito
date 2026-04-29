@@ -1,47 +1,62 @@
-import { Component, inject, signal, computed } from '@angular/core';
-import { ActivatedRoute, Router, RouterLink } from '@angular/router';
-import { SolicitacoesService } from '../../../services/graphql.service';
 import { CommonModule } from '@angular/common';
+import { Component, OnInit, computed, inject, signal } from '@angular/core';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+
 import { SolicitacoesFacade } from '../../../services/solicitacoes.facade';
 
 @Component({
   selector: 'app-solicitacao-detalhe',
+  standalone: true,
   imports: [CommonModule, RouterLink],
   templateUrl: './solicitacao-detalhe.html',
   styleUrl: './solicitacao-detalhe.scss',
 })
-export class SolicitacaoDetalheComponent {
+export class SolicitacaoDetalheComponent implements OnInit {
   private router = inject(Router);
   private route = inject(ActivatedRoute);
-  public service = inject(SolicitacoesService);
+
   public facade = inject(SolicitacoesFacade);
 
-  id = signal<number>(0);
+  id = signal<string | null>(null);
 
   item = computed(() => {
     const idValue = this.id();
-    return this.facade.lista().find((solicitacao) => String(solicitacao.id) === String(idValue));
+
+    if (!idValue) {
+      return undefined;
+    }
+
+    return this.facade.lista().find((solicitacao) => solicitacao.id === idValue);
   });
 
   ngOnInit() {
-    const routeId = Number(this.route.snapshot.paramMap.get('id'));
+    const routeId = this.route.snapshot.paramMap.get('id');
+
     this.id.set(routeId);
     this.facade.carregar();
   }
 
-  aprovar() {
-    this.facade.atualizarStatus(this.id(), 'aprovado');
+  async aprovar() {
+    const idValue = this.id();
 
-    setTimeout(() => {
-      this.router.navigate(['/solicitacoes']);
-    }, 300);
+    if (!idValue) {
+      return;
+    }
+
+    await this.facade.atualizarStatus(idValue, 'aprovado');
+
+    this.router.navigate(['/solicitacoes']);
   }
 
-  reprovar() {
-    this.facade.atualizarStatus(this.id(), 'recusado');
+  async reprovar() {
+    const idValue = this.id();
 
-    setTimeout(() => {
-      this.router.navigate(['/solicitacoes']);
-    }, 300);
+    if (!idValue) {
+      return;
+    }
+
+    await this.facade.atualizarStatus(idValue, 'recusado');
+
+    this.router.navigate(['/solicitacoes']);
   }
 }
