@@ -1,5 +1,5 @@
 <div class="detalhe-container">
-  <button class="btn-back" routerLink="/solicitacoes">← Voltar para a lista</button>
+  <button class="btn-back" routerLink="/solicitacoes">← {{ 'FORM.BACK' | translate }}</button>
 
   @if (item(); as solicitacao) {
     <header class="detalhe-header">
@@ -12,19 +12,19 @@
 
     <section class="detalhe-content">
       <div class="info-group">
-        <span class="label">Documento</span>
+        <span class="label">{{ 'FORM.CPF' | translate }}</span>
         <span class="value">{{ solicitacao.documento }}</span>
       </div>
 
       <div class="info-group">
-        <span class="label">Valor Solicitado</span>
+        <span class="label">{{ 'FORM.VALUE' | translate }}</span>
         <span class="value value--destaque">
           {{ solicitacao.valor | currency: 'BRL' }}
         </span>
       </div>
 
       <div class="info-group">
-        <span class="label">Data da Solicitação</span>
+        <span class="label">{{ 'FORM.DATE' | translate }}</span>
         <span class="value">
           {{ solicitacao.dataSolicitacao | date: 'dd/MM/yyyy' }}
         </span>
@@ -32,11 +32,19 @@
     </section>
 
     <div class="detalhe-actions">
-      <button type="button" class="btn-aprovar" (click)="aprovar()">Aprovar</button>
+      <button type="button" class="btn-analise" (click)="enviarParaAnalise()">
+        Enviar para análise
+      </button>
 
-      <button type="button" class="btn-reprovar" (click)="reprovar()">Reprovar</button>
+      <button type="button" class="btn-aprovar" (click)="aprovar()">
+        {{ 'FORM.SAVE' | translate }}
+      </button>
+
+      <button type="button" class="btn-reprovar" (click)="reprovar()">
+        {{ 'FORM.CANCEL' | translate }}
+      </button>
     </div>
   } @else {
-    <p>Carregando solicitação...</p>
+    <p>{{ 'FORM.LOADING' | translate }}</p>
   }
 </div>

@@ -1,7 +1,7 @@
 {
   "APP": {
-    "TITLE": "Painel de Solicitações de Crédito", 
-      "SUBTITLE": "Gerencie e acompanhe as solicitações de crédito"
+    "TITLE": "Painel de Solicitações de Crédito",
+    "SUBTITLE": "Gerencie e acompanhe as solicitações de crédito"
   },
   "LOGIN": {
     "TITLE": "Entrar no Painel de Crédito",
@@ -21,23 +21,25 @@
     "LIGHT": "Claro",
     "DARK": "Escuro",
     "LOGOUT": "Sair da conta",
-    "LOGIN_TYPE" : "Tipo de login",
+    "LOGIN_TYPE": "Tipo de login",
     "LOGIN_PROVIDER": "Provedor",
     "LAST_ACCESS": "Último acesso"
   },
   "FORM": {
     "NEW": "Nova Solicitação",
+    "BACK": "Voltar para a lista",
     "EDIT": "Editar Solicitação",
     "CLIENT": "Nome do cliente",
     "CPF": "CPF",
     "VALUE": "Valor solicitado",
-    "PLACEHOLDER_CLIENT": "Enter client name",
-    "PLACEHOLDER_CPF": "Enter only the 11 digits of the CPF",
-    "PLACEHOLDER_VALUE": "Enter requested amount",
+    "PLACEHOLDER_CLIENT": "Digite o nome do cliente",
+    "PLACEHOLDER_CPF": "Digite apenas os 11 dígitos do CPF",
+    "PLACEHOLDER_VALUE": "Digite o valor solicitado",
     "SAVE": "Salvar",
     "CANCEL": "Cancelar",
     "ERROR_NAME": "Nome é obrigatório.",
-    "ERROR_CPF": "CPF deve conter exatamente 11 números."
+    "ERROR_CPF": "CPF deve conter exatamente 11 números.", 
+    "DATE": "Data da Solicitação"
   },
   "ACTIONS": {
     "REQUESTS": "Solicitações",
@@ -46,27 +48,37 @@
     "ANALYZE": "Analisar",
     "DELETE": "Excluir",
     "LOGOUT": "Sair",
-    "PROFILE": "Perfil", 
+    "PROFILE": "Perfil",
     "ACTIVITIES": "Atividades"
   },
   "REQUEST": {
-  "DATE": "Data da Solicitação"
-},
-"SEARCH": {
-  "PLACEHOLDER": "Buscar cliente"
-},
-"FILTER": {
-  "ALL": "Todos"
-},
-"STATUS": {
-  "PENDING": "Pendente",
-  "APPROVED": "Aprovado",
-  "REJECTED": "Recusado"
-},
-"ACCESSIBILITY": {
-  "OPEN_REQUEST": "Abrir detalhes da solicitação de",
-  "EDIT_REQUEST": "Editar solicitação de",
-  "ANALYZE_REQUEST": "Analisar solicitação de",
-  "DELETE_REQUEST": "Excluir solicitação de"
+    "DATE": "Data da Solicitação"
+  },
+  "SEARCH": {
+    "PLACEHOLDER": "Buscar cliente"
+  },
+  "FILTER": {
+    "ALL": "Todos"
+  },
+  "STATUS": {
+    "PENDING": "Pendente",
+    "IN_ANALYSIS": "Em análise",
+    "APPROVED": "Aprovado",
+    "REJECTED": "Recusado"
+  },
+  "ACCESSIBILITY": {
+    "OPEN_REQUEST": "Abrir detalhes da solicitação de",
+    "EDIT_REQUEST": "Editar solicitação de",
+    "ANALYZE_REQUEST": "Analisar solicitação de",
+    "DELETE_REQUEST": "Excluir solicitação de"
+  },
+  "FEEDBACK": {
+    "REQUEST_CREATED": "Solicitação criada com sucesso.",
+    "REQUEST_UPDATED": "Solicitação atualizada com sucesso.",
+    "STATUS_UPDATED": "Status atualizado com sucesso.",
+    "REQUEST_DELETED": "Solicitação excluída com sucesso."
+  },
+   "CONFIRM": {
+  "DELETE_REQUEST": "Tem certeza que deseja deletar esta solicitação?"
 }
 }

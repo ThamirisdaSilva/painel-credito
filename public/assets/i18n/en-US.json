@@ -1,6 +1,6 @@
 {
   "APP": {
-    "TITLE": "Credit Requests Dashboard", 
+    "TITLE": "Credit Requests Dashboard",
     "SUBTITLE": "Manage and track credit requests"
   },
   "LOGIN": {
@@ -21,12 +21,13 @@
     "LIGHT": "Light",
     "DARK": "Dark",
     "LOGOUT": "Sign out",
-    "LOGIN_TYPE" : "Login type",
+    "LOGIN_TYPE": "Login type",
     "LOGIN_PROVIDER": "Provider",
     "LAST_ACCESS": "Last access"
   },
   "FORM": {
     "NEW": "New Request",
+    "BACK": "Back to list",
     "EDIT": "Edit Request",
     "CLIENT": "Client name",
     "CPF": "CPF",
@@ -35,9 +36,10 @@
     "PLACEHOLDER_CPF": "Enter only the 11 digits of the CPF",
     "PLACEHOLDER_VALUE": "Enter requested amount",
     "SAVE": "Save",
-    "CANCEL": "Cancel",
+    "CANCEL": "Reject",
     "ERROR_NAME": "Name is required.",
-    "ERROR_CPF": "CPF must contain exactly 11 digits."
+    "ERROR_CPF": "CPF must contain exactly 11 digits.",
+    "DATE": "Request Date"
   },
   "ACTIONS": {
     "REQUESTS": "Requests",
@@ -46,27 +48,37 @@
     "ANALYZE": "Review",
     "DELETE": "Delete",
     "LOGOUT": "Sign out",
-    "PROFILE": "Profile", 
+    "PROFILE": "Profile",
     "ACTIVITIES": "Activities"
   },
   "REQUEST": {
     "DATE": "Request Date"
   },
   "SEARCH": {
-  "PLACEHOLDER": "Search client"
-},
-"FILTER": {
-  "ALL": "All"
-},
-"STATUS": {
-  "PENDING": "Pending",
-  "APPROVED": "Approved",
-  "REJECTED": "Rejected"
-},
-"ACCESSIBILITY": {
-  "OPEN_REQUEST": "Open request of",
-  "EDIT_REQUEST": "Edit request of",
-  "ANALYZE_REQUEST": "Analyze request of",
-  "DELETE_REQUEST": "Delete request of"
+    "PLACEHOLDER": "Search client"
+  },
+  "FILTER": {
+    "ALL": "All"
+  },
+  "STATUS": {
+    "PENDING": "Pending",
+    "IN_ANALYSIS": "In analysis",
+    "APPROVED": "Approved",
+    "REJECTED": "Rejected"
+  },
+  "ACCESSIBILITY": {
+    "OPEN_REQUEST": "Open request details for",
+    "EDIT_REQUEST": "Edit request for",
+    "ANALYZE_REQUEST": "Analyze request for",
+    "DELETE_REQUEST": "Delete request for"
+  },
+  "FEEDBACK": {
+    "REQUEST_CREATED": "Request created successfully.",
+    "REQUEST_UPDATED": "Request updated successfully.",
+    "STATUS_UPDATED": "Status updated successfully.",
+    "REQUEST_DELETED": "Request deleted successfully."
+  }, 
+  "CONFIRM": {
+  "DELETE_REQUEST": "Are you sure you want to delete this request?"
 }
 }

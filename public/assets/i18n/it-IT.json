@@ -1,7 +1,7 @@
 {
   "APP": {
-    "TITLE": "Pannello delle Richieste di Credito", 
-      "SUBTITLE": "Gestisci e monitora le richieste di credito"
+    "TITLE": "Pannello delle Richieste di Credito",
+    "SUBTITLE": "Gestisci e monitora le richieste di credito"
   },
   "LOGIN": {
     "TITLE": "Accedere al Pannello di Credito",
@@ -21,23 +21,25 @@
     "LIGHT": "Chiaro",
     "DARK": "Scuro",
     "LOGOUT": "Esci dall'account",
-    "LOGIN_TYPE" : "Tipo di login",
+    "LOGIN_TYPE": "Tipo di login",
     "LOGIN_PROVIDER": "Fornitore",
     "LAST_ACCESS": "Ultimo accesso"
   },
   "FORM": {
     "NEW": "Nuova Richiesta",
+    "BACK": "Torna alla lista",
     "EDIT": "Modifica Richiesta",
     "CLIENT": "Nome del cliente",
     "CPF": "CPF",
     "PLACEHOLDER_CLIENT": "Inserisci il nome del cliente",
-    "PLACEHOLDER_CPF": "Inserisci solo i 11 numeri del CPF",
+    "PLACEHOLDER_CPF": "Inserisci solo gli 11 numeri del CPF",
     "PLACEHOLDER_VALUE": "Inserisci l'importo richiesto",
     "VALUE": "Importo richiesto",
     "SAVE": "Salva",
     "CANCEL": "Annulla",
     "ERROR_NAME": "Il nome è obbligatorio.",
-    "ERROR_CPF": "Il CPF deve contenere esattamente 11 numeri."
+    "ERROR_CPF": "Il CPF deve contenere esattamente 11 numeri.", 
+    "DATE": "Data della Richiesta"
   },
   "ACTIONS": {
     "REQUESTS": "Richieste",
@@ -60,13 +62,23 @@
   },
   "STATUS": {
     "PENDING": "In sospeso",
+    "IN_ANALYSIS": "In analisi",
     "APPROVED": "Approvato",
     "REJECTED": "Rifiutato"
   },
   "ACCESSIBILITY": {
-  "OPEN_REQUEST": "Apri dettagli della richiesta di",
-  "EDIT_REQUEST": "Modifica richiesta di",
-  "ANALYZE_REQUEST": "Analizza richiesta di",
-  "DELETE_REQUEST": "Elimina richiesta di"
+    "OPEN_REQUEST": "Apri dettagli della richiesta di",
+    "EDIT_REQUEST": "Modifica richiesta di",
+    "ANALYZE_REQUEST": "Analizza richiesta di",
+    "DELETE_REQUEST": "Elimina richiesta di"
+  },
+  "FEEDBACK": {
+    "REQUEST_CREATED": "Richiesta creata con successo.",
+    "REQUEST_UPDATED": "Richiesta aggiornata con successo.",
+    "STATUS_UPDATED": "Stato aggiornato con successo.",
+    "REQUEST_DELETED": "Richiesta eliminata con successo."
+  },
+   "CONFIRM": {
+  "DELETE_REQUEST": "Sei sicuro di voler eliminare questa richiesta?"
 }
 }

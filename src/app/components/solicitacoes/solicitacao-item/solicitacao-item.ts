@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 
 import { SolicitacaoViewModel } from '../../../services/graphql.service';
 import { SolicitacoesFacade } from '../../../services/solicitacoes.facade';
-import { TranslatePipe } from '@ngx-translate/core';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-solicitacao-item',
@@ -20,6 +20,7 @@ export class SolicitacaoItemComponent {
   constructor(
     private router: Router,
     private facade: SolicitacoesFacade,
+    private translate: TranslateService,
   ) {}
 
   irParaDetalhe() {
@@ -40,6 +41,12 @@ export class SolicitacaoItemComponent {
 
   deletar() {
     if (!this.solicitacao.id) {
+      return;
+    }
+
+    const confirmou = confirm(this.translate.instant('CONFIRM.DELETE_REQUEST'));
+
+    if (!confirmou) {
       return;
     }
 

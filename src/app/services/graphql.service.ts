@@ -8,6 +8,7 @@ import {
   doc,
   updateDoc,
 } from '@angular/fire/firestore';
+import { TranslateService } from '@ngx-translate/core';
 
 import { Solicitacao, StatusSolicitacao } from '../models/solicitacao.model';
 import { AtividadesService } from './atividades.service';
@@ -33,6 +34,7 @@ export class SolicitacoesService {
     private firestore: Firestore,
     private atividadesService: AtividadesService,
     private authService: AuthService,
+    private translate: TranslateService,
   ) {}
 
   carregarSolicitacoes() {
@@ -79,7 +81,7 @@ export class SolicitacoesService {
 
     const documentoCriado = await addDoc(solicitacoesRef, novaSolicitacao);
 
-    this.exibirFeedback('Solicitação criada com sucesso.');
+    this.exibirFeedback(this.translate.instant('FEEDBACK.REQUEST_CREATED'));
 
     await this.atividadesService.registrarAtividade({
       tipo: 'solicitacao_criada',
@@ -106,7 +108,7 @@ export class SolicitacoesService {
       atualizadoEm: new Date().toISOString(),
     });
 
-    this.exibirFeedback('Solicitação atualizada com sucesso.');
+    this.exibirFeedback(this.translate.instant('FEEDBACK.REQUEST_UPDATED'));
 
     await this.atividadesService.registrarAtividade({
       tipo: 'solicitacao_editada',
@@ -126,7 +128,7 @@ export class SolicitacoesService {
       atualizadoEm: new Date().toISOString(),
     });
 
-    this.exibirFeedback('Status atualizado com sucesso.');
+    this.exibirFeedback(this.translate.instant('FEEDBACK.STATUS_UPDATED'));
 
     await this.atividadesService.registrarAtividade({
       tipo: 'status_atualizado',
@@ -145,7 +147,7 @@ export class SolicitacoesService {
 
     await deleteDoc(solicitacaoRef);
 
-    this.exibirFeedback('Solicitação excluída com sucesso.');
+    this.exibirFeedback(this.translate.instant('FEEDBACK.REQUEST_DELETED'));
 
     await this.atividadesService.registrarAtividade({
       tipo: 'solicitacao_excluida',
@@ -178,10 +180,10 @@ export class SolicitacoesService {
     };
 
     const labelMap: Record<string, string> = {
-      pendente: 'Pendente',
-      em_analise: 'Em Análise',
-      aprovado: 'Aprovado',
-      recusado: 'Recusado',
+      pendente: this.translate.instant('STATUS.PENDING'),
+      em_analise: this.translate.instant('STATUS.IN_ANALYSIS'),
+      aprovado: this.translate.instant('STATUS.APPROVED'),
+      recusado: this.translate.instant('STATUS.REJECTED'),
     };
 
     return {

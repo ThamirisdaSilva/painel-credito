@@ -21,12 +21,13 @@
     "LIGHT": "Claro",
     "DARK": "Oscuro",
     "LOGOUT": "Cerrar sesión",
-    "LOGIN_TYPE" : "Tipo de inicio de sesión",
+    "LOGIN_TYPE": "Tipo de inicio de sesión",
     "LOGIN_PROVIDER": "Proveedor",
     "LAST_ACCESS": "Último acceso"
   },
   "FORM": {
     "NEW": "Nueva Solicitud",
+    "BACK": "Volver a la lista",
     "EDIT": "Editar Solicitud",
     "CLIENT": "Nombre del cliente",
     "CPF": "CPF",
@@ -35,9 +36,10 @@
     "PLACEHOLDER_CPF": "Escribe solo los 11 números del CPF",
     "PLACEHOLDER_VALUE": "Escribe el valor solicitado",
     "SAVE": "Guardar",
-    "CANCEL": "Cancelar",
+    "CANCEL": "Rechazar",
     "ERROR_NAME": "El nombre es obligatorio.",
-    "ERROR_CPF": "El CPF debe contener exactamente 11 números."
+    "ERROR_CPF": "El CPF debe contener exactamente 11 números.",
+    "DATE": "Fecha de la Solicitud"
   },
   "ACTIONS": {
     "REQUESTS": "Solicitudes",
@@ -57,6 +59,7 @@
   },
   "STATUS": {
     "PENDING": "Pendiente",
+    "IN_ANALYSIS": "En análisis",
     "APPROVED": "Aprobado",
     "REJECTED": "Rechazado"
   },
@@ -75,12 +78,20 @@
     "DESCRIPTION": "Registra automáticamente los inicios de sesión, los cambios de solicitudes y los cambios de preferencias.",
     "BACK": "Volver a las solicitudes",
     "MESSAGE": "Actualizaciones en tiempo real habilitadas"
-    },
+  },
   "ACCESSIBILITY": {
     "OPEN_REQUEST": "Abrir detalles de la solicitud de",
     "EDIT_REQUEST": "Editar solicitud de",
     "ANALYZE_REQUEST": "Analizar solicitud de",
     "DELETE_REQUEST": "Eliminar solicitud de"
+  },
+  "FEEDBACK": {
+    "REQUEST_CREATED": "Solicitud creada correctamente.",
+    "REQUEST_UPDATED": "Solicitud actualizada correctamente.",
+    "STATUS_UPDATED": "Estado actualizado correctamente.",
+    "REQUEST_DELETED": "Solicitud eliminada correctamente."
+  },
+   "CONFIRM": {
+  "DELETE_REQUEST": "¿Estás seguro de que deseas eliminar esta solicitud?"
 }
 }
- 

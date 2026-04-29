@@ -26,7 +26,7 @@ export class SolicitacoesFacade {
   }
 
   listaFiltrada = computed(() => {
-    let lista = this._solicitacoes();
+    let lista = [...this._solicitacoes()];
 
     const filtro = this.filtroSelecionado();
     const busca = this.termoBusca();
@@ -38,6 +38,13 @@ export class SolicitacoesFacade {
     if (busca) {
       lista = lista.filter((item) => item.cliente.toLowerCase().includes(busca));
     }
+
+    lista = lista.sort((a, b) => {
+      const dataA = new Date(a.dataSolicitacao).getTime();
+      const dataB = new Date(b.dataSolicitacao).getTime();
+
+      return dataB - dataA;
+    });
 
     return lista;
   });
