@@ -1,0 +1,131 @@
+<app-header [title]="'SIMULATOR.TITLE' | translate"></app-header>
+
+<main class="simulador-page">
+  <section class="simulador-card" aria-labelledby="titulo-simulador">
+    <div class="simulador-card__header">
+      <div>
+        <h2 id="titulo-simulador">
+          {{ 'SIMULATOR.HEADING' | translate }}
+        </h2>
+
+        <p>
+          {{ 'SIMULATOR.DESCRIPTION' | translate }}
+        </p>
+      </div>
+    </div>
+
+    <div class="simulador-grid">
+      <section class="simulador-form" aria-labelledby="titulo-parametros">
+        <h3 id="titulo-parametros">
+          {{ 'SIMULATOR.PARAMETERS' | translate }}
+        </h3>
+
+        <div class="campo">
+          <label for="valor">
+            {{ 'SIMULATOR.VALUE' | translate }}
+          </label>
+
+          <input
+            id="valor"
+            type="range"
+            min="1000"
+            max="100000"
+            step="1000"
+            [value]="valorSolicitado()"
+            (input)="alterarValor($event)"
+          />
+
+          <strong>
+            {{ valorSolicitado() | currency: 'BRL' : 'symbol' : '1.2-2' : 'pt-BR' }}
+          </strong>
+        </div>
+
+        <div class="campo">
+          <label for="prazo">
+            {{ 'SIMULATOR.TERM' | translate }}
+          </label>
+
+          <input
+            id="prazo"
+            type="range"
+            min="1"
+            max="60"
+            step="1"
+            [value]="prazoMeses()"
+            (input)="alterarPrazo($event)"
+          />
+
+          <strong> {{ prazoMeses() }} {{ 'SIMULATOR.MONTHS' | translate }} </strong>
+        </div>
+
+        <div class="campo">
+          <label for="taxa">
+            {{ 'SIMULATOR.RATE' | translate }}
+          </label>
+
+          <input
+            id="taxa"
+            type="number"
+            min="0"
+            max="20"
+            step="0.1"
+            [value]="taxaJuros()"
+            (input)="alterarTaxa($event)"
+          />
+
+          <strong> {{ taxaJuros() }}% </strong>
+        </div>
+
+        <div class="acoes">
+          <button type="button" class="btn-secundario" (click)="resetarSimulacao()">
+            {{ 'SIMULATOR.RESET' | translate }}
+          </button>
+
+          <button type="button" class="btn-primario" (click)="irParaNovaSolicitacao()">
+            {{ 'SIMULATOR.CREATE_REQUEST' | translate }}
+          </button>
+        </div>
+      </section>
+
+      <section class="resultado" aria-labelledby="titulo-resultado">
+        <h3 id="titulo-resultado">
+          {{ 'SIMULATOR.RESULT' | translate }}
+        </h3>
+
+        <div class="resultado-card destaque">
+          <span>
+            {{ 'SIMULATOR.INSTALLMENT' | translate }}
+          </span>
+
+          <strong>
+            {{ valorParcela() | currency: 'BRL' : 'symbol' : '1.2-2' : 'pt-BR' }}
+          </strong>
+        </div>
+
+        <div class="resultado-card">
+          <span>
+            {{ 'SIMULATOR.TOTAL_PAID' | translate }}
+          </span>
+
+          <strong>
+            {{ valorTotalPago() | currency: 'BRL' : 'symbol' : '1.2-2' : 'pt-BR' }}
+          </strong>
+        </div>
+
+        <div class="resultado-card">
+          <span>
+            {{ 'SIMULATOR.INTEREST_TOTAL' | translate }}
+          </span>
+
+          <strong>
+            {{ totalJuros() | currency: 'BRL' : 'symbol' : '1.2-2' : 'pt-BR' }}
+          </strong>
+        </div>
+
+        <p class="aviso">
+          {{ 'SIMULATOR.DISCLAIMER' | translate }}
+        </p>
+      </section>
+    </div>
+  </section>
+</main>

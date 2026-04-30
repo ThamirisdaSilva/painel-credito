@@ -1,0 +1,156 @@
+.simulador-page {
+  min-height: 100vh;
+  padding: 24px;
+  background: var(--page-bg);
+  color: var(--text-main);
+}
+
+.simulador-card {
+  max-width: 1200px;
+  margin: 0 auto;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+  padding: 24px;
+}
+
+.simulador-card__header {
+  margin-bottom: 24px;
+}
+
+.simulador-card__header h2 {
+  margin: 0 0 8px;
+  font-size: 1.6rem;
+}
+
+.simulador-card__header p {
+  margin: 0;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+.simulador-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 24px;
+}
+
+.simulador-form,
+.resultado {
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 20px;
+  background: var(--page-bg);
+}
+
+.simulador-form h3,
+.resultado h3 {
+  margin: 0 0 18px;
+  font-size: 1.1rem;
+}
+
+.campo {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+
+.campo label {
+  font-weight: 600;
+}
+
+.campo input[type='range'] {
+  width: 100%;
+}
+
+.campo input[type='number'] {
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--input-bg);
+  color: var(--text-main);
+  font-size: 1rem;
+}
+
+.campo strong {
+  font-size: 1rem;
+}
+
+.acoes {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 24px;
+}
+
+.btn-primario,
+.btn-secundario {
+  border: none;
+  border-radius: 10px;
+  padding: 12px 16px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.btn-primario {
+  background: #2563eb;
+  color: #ffffff;
+}
+
+.btn-primario:hover {
+  background: #1d4ed8;
+}
+
+.btn-secundario {
+  background: var(--card-bg);
+  color: var(--text-main);
+  border: 1px solid var(--border);
+}
+
+.btn-secundario:hover {
+  background: var(--hover-bg);
+}
+
+.resultado {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.resultado-card {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: center;
+  border: 1px solid var(--border);
+  background: var(--card-bg);
+  border-radius: 12px;
+  padding: 16px;
+}
+
+.resultado-card span {
+  color: var(--text-muted);
+}
+
+.resultado-card strong {
+  font-size: 1.1rem;
+}
+
+.resultado-card.destaque strong {
+  font-size: 1.4rem;
+}
+
+.aviso {
+  margin-top: 8px;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+@media (max-width: 900px) {
+  .simulador-grid {
+    grid-template-columns: 1fr;
+  }
+}

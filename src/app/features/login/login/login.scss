@@ -1,0 +1,99 @@
+.login {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+
+  background: linear-gradient(135deg, #1976d2, #0d47a1);
+}
+
+.login__container {
+  display: flex;
+  gap: 40px;
+  align-items: center;
+}
+
+/* BLOCO ESQUERDA */
+.login__branding {
+  color: white;
+  max-width: 300px;
+}
+
+.login__branding h1 {
+  font-size: 28px;
+  margin-bottom: 12px;
+}
+
+.login__branding p {
+  font-size: 16px;
+  opacity: 0.9;
+}
+
+/* CARD */
+.login__card {
+  background: #ffffff;
+  padding: 32px;
+  border-radius: 16px;
+
+  width: 320px;
+
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.login__card h2 {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+/* FORM */
+.login__form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.login__input {
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+
+  font-size: 14px;
+
+  transition: border 0.2s;
+}
+
+.login__input:focus {
+  outline: none;
+  border-color: #1976d2;
+}
+
+.login__button {
+  margin-top: 8px;
+
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+
+  background: #1976d2;
+  color: white;
+
+  font-weight: 600;
+  cursor: pointer;
+
+  transition: all 0.2s ease;
+}
+
+.login__button:hover {
+  background: #1565c0;
+  transform: translateY(-1px);
+}
+
+.login__footer {
+  font-size: 12px;
+  color: #888;
+  text-align: center;
+}

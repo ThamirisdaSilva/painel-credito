@@ -1,0 +1,47 @@
+import { Component } from '@angular/core';
+import { CommonModule, DatePipe } from '@angular/common';
+import { Router } from '@angular/router';
+import { TranslatePipe } from '@ngx-translate/core';
+
+import { AuthService } from '../../../core/auth/auth.service';
+import { AppLanguage, AppTheme, PreferencesService } from '../../../services/preferences.service';
+import { HeaderComponent } from '../../../shared/components/header/header';
+import { AtividadesService } from '../../atividades/services/atividades.service';
+
+@Component({
+  selector: 'app-perfil-usuario',
+  standalone: true,
+  imports: [CommonModule, DatePipe, TranslatePipe, HeaderComponent],
+  templateUrl: './perfil-usuario.html',
+  styleUrls: ['./perfil-usuario.scss'],
+})
+export class PerfilUsuarioComponent {
+  constructor(
+    public authService: AuthService,
+    public preferencesService: PreferencesService,
+    private atividadesService: AtividadesService,
+    private router: Router,
+  ) {}
+
+  alterarIdioma(event: Event) {
+    const select = event.target as HTMLSelectElement;
+    this.preferencesService.alterarIdioma(select.value as AppLanguage);
+  }
+
+  alterarTema(event: Event) {
+    const select = event.target as HTMLSelectElement;
+    this.preferencesService.alterarTema(select.value as AppTheme);
+  }
+
+  async sair() {
+    await this.atividadesService.registrarAtividade({
+      tipo: 'logout',
+      descricao: 'Usuário saiu da aplicação pela tela de perfil',
+      entidade: 'usuario',
+    });
+
+    await this.authService.logout();
+
+    this.router.navigate(['/login']);
+  }
+}

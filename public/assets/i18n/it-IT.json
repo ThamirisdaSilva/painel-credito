@@ -43,6 +43,7 @@
   },
   "ACTIONS": {
     "REQUESTS": "Richieste",
+    "SIMULATOR": "Simulatore",
     "NEW_REQUEST": "Nuova Richiesta",
     "EDIT": "Modifica",
     "ANALYZE": "Analizza",
@@ -87,5 +88,22 @@
   },
    "CONFIRM": {
   "DELETE_REQUEST": "Sei sicuro di voler eliminare questa richiesta?"
-}
+},
+"SIMULATOR": {
+    "TITLE": "Simulatore di Credito",
+    "HEADING": "Simula una proposta di credito",
+    "DESCRIPTION": "Inserisci il valore, il termine e la tasso mensile per stimare l'importo della rata, il totale pagato e gli interessi.",
+    "PARAMETERS": "Parametri della simulazione",
+    "VALUE": "Valore richiesto",
+    "TERM": "Termine",
+    "RATE": "Tasso mensile",
+    "MONTHS": "mesi",
+    "RESULT": "Risultato della simulazione",
+    "INSTALLMENT": "Rata stimata",
+    "TOTAL_PAID": "Totale pagato",
+    "INTEREST_TOTAL": "Interesse totale",
+    "RESET": "Reimposta",
+    "CREATE_REQUEST": "Crea richiesta",
+    "DISCLAIMER": "Questa simulazione è solo a scopo di stima e non rappresenta l'approvazione del credito."
+  }
 }

@@ -1,0 +1,37 @@
+:host {
+  display: block; // Garante que o componente ocupe largura total
+  width: 100%;
+}
+
+.filtro-container {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #e9ecef;
+
+  button {
+    all: unset; // Reseta o botão padrão do navegador
+    padding: 8px 20px;
+    border-radius: 50px;
+    background: white;
+    border: 1px solid #dee2e6;
+    color: #495057;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+
+    &:hover {
+      background: #e9ecef;
+    }
+
+    &.active {
+      background: #1a237e;
+      color: white;
+      border-color: #1a237e;
+      box-shadow: 0 4px 6px rgba(26, 35, 126, 0.2);
+    }
+  }
+}

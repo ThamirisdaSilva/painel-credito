@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { authGuard } from './guards/auth.guard';
+import { authGuard } from './core/auth/guards/auth.guard';
 
 export const routes: Routes = [
   {
@@ -10,24 +10,29 @@ export const routes: Routes = [
 
   {
     path: 'login',
-    loadComponent: () => import('./components/login/login/login').then((m) => m.LoginComponent),
+    loadComponent: () => import('./features/login/login/login').then((m) => m.LoginComponent),
   },
 
   {
     path: 'solicitacoes',
     loadComponent: () =>
-      import('./components/solicitacoes/solicitacao-lista/solicitacao-lista').then(
+      import('./features/solicitacoes/components/solicitacao-lista/solicitacao-lista').then(
         (m) => m.SolicitacaoListaComponent,
       ),
     canActivate: [authGuard],
   },
-
-  // ROTAS ESPECÍFICAS PRIMEIRO
-
+  {
+    path: 'simulador',
+    loadComponent: () =>
+      import('./features/simulador-credito/simulador-credito').then(
+        (m) => m.SimuladorCreditoComponent,
+      ),
+    canActivate: [authGuard],
+  },
   {
     path: 'solicitacoes/nova',
     loadComponent: () =>
-      import('./components/solicitacoes/solicitacao-form/solicitacao-form').then(
+      import('./features/solicitacoes/components/solicitacao-form/solicitacao-form').then(
         (m) => m.SolicitacaoFormComponent,
       ),
     canActivate: [authGuard],
@@ -35,7 +40,7 @@ export const routes: Routes = [
   {
     path: 'solicitacoes/editar/:id',
     loadComponent: () =>
-      import('./components/solicitacoes/solicitacao-form/solicitacao-form').then(
+      import('./features/solicitacoes/components/solicitacao-form/solicitacao-form').then(
         (m) => m.SolicitacaoFormComponent,
       ),
     canActivate: [authGuard],
@@ -43,7 +48,7 @@ export const routes: Routes = [
   {
     path: 'perfil',
     loadComponent: () =>
-      import('./components/perfil/perfil-usuario/perfil-usuario').then(
+      import('./features/perfil/perfil-usuario/perfil-usuario').then(
         (m) => m.PerfilUsuarioComponent,
       ),
     canActivate: [authGuard],
@@ -51,7 +56,7 @@ export const routes: Routes = [
   {
     path: 'atividades',
     loadComponent: () =>
-      import('./components/atividades/atividades-lista/atividades-lista').then(
+      import('./features/atividades/components/atividades-lista/atividades-lista').then(
         (m) => m.AtividadesListaComponent,
       ),
     canActivate: [authGuard],
@@ -62,7 +67,7 @@ export const routes: Routes = [
   {
     path: 'solicitacoes/:id',
     loadComponent: () =>
-      import('./components/solicitacoes/solicitacao-detalhe/solicitacao-detalhe').then(
+      import('./features/solicitacoes/components/solicitacao-detalhe/solicitacao-detalhe').then(
         (m) => m.SolicitacaoDetalheComponent,
       ),
     canActivate: [authGuard],
