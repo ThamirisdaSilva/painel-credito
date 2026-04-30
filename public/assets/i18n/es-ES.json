@@ -49,7 +49,8 @@
     "DELETE": "Eliminar",
     "LOGOUT": "Salir",
     "PROFILE": "Perfil",
-    "ACTIVITIES": "Actividades"
+    "ACTIVITIES": "Actividades",
+    "SIMULATOR": "Simulador de Crédito"
   },
   "SEARCH": {
     "PLACEHOLDER": "Buscar cliente"
@@ -93,5 +94,22 @@
     "REQUEST_DELETED": "Solicitud eliminada correctamente."
   },
    "CONFIRM": {
-  "DELETE_REQUEST": "¿Estás seguro de que deseas eliminar esta solicitud?"
+  "DELETE_REQUEST": "¿Estás seguro de que deseas eliminar esta solicitud?",
+  "SIMULATOR": {
+    "TITLE": "Simulador de Crédito",
+    "HEADING": "Simula una propuesta de crédito",
+    "DESCRIPTION": "Ingrese valor, plazo y tasa mensual para estimar cuota, total pagado e intereses.",
+    "PARAMETERS": "Parámetros de simulación",
+    "VALUE": "Valor solicitado",
+    "TERM": "Plazo",
+    "RATE": "Tasa de interés mensual",
+    "MONTHS": "meses",
+    "RESULT": "Resultado de la simulación",
+    "INSTALLMENT": "Cuota aproximada",
+    "TOTAL_PAID": "Total pagado",
+    "INTEREST_TOTAL": "Total de intereses",
+    "RESET": "Restablecer",
+    "CREATE_REQUEST": "Crear solicitud",
+    "DISCLAIMER": "Esta simulación es solo una estimación y no representa aprobación de crédito."
+  }
 }}

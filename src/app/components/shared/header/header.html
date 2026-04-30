@@ -1,12 +1,14 @@
+<!-- src/app/components/shared/header/header.html -->
+
 <header class="header">
   @if (isOffline) {
     <div class="offline-banner">Você está navegando sem internet. Verifique sua conexão.</div>
   }
 
   <div class="header__container">
-    <div>
+    <div class="header__brand">
       <h1 class="header__title">
-        {{ 'APP.TITLE' | translate }}
+        {{ title || ('APP.TITLE' | translate) }}
       </h1>
 
       <p class="header__subtitle">
@@ -15,23 +17,27 @@
     </div>
 
     @if (authService.usuario() && !estaNaTelaLogin()) {
-      <div class="header__auth">
-        <a class="header__link" routerLink="/solicitacoes">
+      <nav class="header__nav" aria-label="Menu principal">
+        <a class="header__link" routerLink="/solicitacoes" routerLinkActive="header__link--active">
           {{ 'ACTIONS.REQUESTS' | translate }}
         </a>
 
-        <a class="header__link" routerLink="/perfil">
+        <a class="header__link" routerLink="/perfil" routerLinkActive="header__link--active">
           {{ 'ACTIONS.PROFILE' | translate }}
         </a>
 
-        <a class="header__link" routerLink="/atividades">
+        <a class="header__link" routerLink="/atividades" routerLinkActive="header__link--active">
           {{ 'ACTIONS.ACTIVITIES' | translate }}
+        </a>
+
+        <a class="header__link" routerLink="/simulador" routerLinkActive="header__link--active">
+          {{ 'ACTIONS.SIMULATOR' | translate }}
         </a>
 
         <button type="button" class="header__logout" (click)="logout()">
           {{ 'ACTIONS.LOGOUT' | translate }}
         </button>
-      </div>
+      </nav>
     }
   </div>
 </header>

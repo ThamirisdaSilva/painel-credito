@@ -49,7 +49,8 @@
     "DELETE": "Excluir",
     "LOGOUT": "Sair",
     "PROFILE": "Perfil",
-    "ACTIVITIES": "Atividades"
+    "ACTIVITIES": "Atividades",
+    "SIMULATOR": "Simulador de Crédito"
   },
   "REQUEST": {
     "DATE": "Data da Solicitação"
@@ -87,5 +88,22 @@
   },
    "CONFIRM": {
   "DELETE_REQUEST": "Tem certeza que deseja deletar esta solicitação?"
-}
+},
+"SIMULATOR": {
+    "TITLE": "Simulador de Crédito",
+    "HEADING": "Simule uma proposta de crédito",
+    "DESCRIPTION": "Informe valor, prazo e taxa mensal para estimar parcela, total pago e juros.",
+    "PARAMETERS": "Parâmetros da simulação",
+    "VALUE": "Valor solicitado",
+    "TERM": "Prazo",
+    "RATE": "Taxa de juros mensal",
+    "MONTHS": "meses",
+    "RESULT": "Resultado da simulação",
+    "INSTALLMENT": "Parcela aproximada",
+    "TOTAL_PAID": "Total pago",
+    "INTEREST_TOTAL": "Total de juros",
+    "RESET": "Resetar",
+    "CREATE_REQUEST": "Criar solicitação",
+    "DISCLAIMER": "Esta simulação é apenas uma estimativa e não representa aprovação de crédito."
+  }
 }

@@ -32,6 +32,7 @@ export const routes: Routes = [
       ),
     canActivate: [authGuard],
   },
+
   {
     path: 'solicitacoes/editar/:id',
     loadComponent: () =>
@@ -40,6 +41,7 @@ export const routes: Routes = [
       ),
     canActivate: [authGuard],
   },
+
   {
     path: 'perfil',
     loadComponent: () =>
@@ -48,11 +50,21 @@ export const routes: Routes = [
       ),
     canActivate: [authGuard],
   },
+
   {
     path: 'atividades',
     loadComponent: () =>
       import('./components/atividades/atividades-lista/atividades-lista').then(
         (m) => m.AtividadesListaComponent,
+      ),
+    canActivate: [authGuard],
+  },
+
+  {
+    path: 'simulador',
+    loadComponent: () =>
+      import('./components/simulador-credito/simulador-credito').then(
+        (m) => m.SimuladorCreditoComponent,
       ),
     canActivate: [authGuard],
   },

@@ -1,0 +1,142 @@
+/* src/app/components/simulador-credito/simulador-credito.scss */
+
+.simulador-page {
+  min-height: calc(100vh - 120px);
+  background: #0f172a;
+  color: #f8fafc;
+  padding: 2rem;
+}
+
+.simulador-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.simulador-intro {
+  margin-bottom: 2rem;
+}
+
+.simulador-intro h1 {
+  font-size: 2.5rem;
+  margin: 0 0 0.5rem;
+}
+
+.simulador-intro p {
+  font-size: 1.125rem;
+  color: #cbd5e1;
+  margin: 0;
+}
+
+.simulador-card {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 2rem;
+  background: #111827;
+  border: 1px solid #334155;
+  border-radius: 1.5rem;
+  padding: 2rem;
+}
+
+.simulador-form,
+.simulador-resultado {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.simulador-form h2,
+.simulador-resultado h2 {
+  font-size: 1.75rem;
+  margin: 0;
+}
+
+.form-group {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.form-group label {
+  font-size: 1rem;
+  color: #cbd5e1;
+}
+
+.form-group input[type='range'] {
+  width: 100%;
+}
+
+.form-group strong {
+  font-size: 1.25rem;
+}
+
+.taxa-input {
+  max-width: 160px;
+  padding: 0.75rem;
+  border-radius: 0.75rem;
+  border: 1px solid #475569;
+  background: #020617;
+  color: #f8fafc;
+  font-size: 1rem;
+}
+
+.simulador-actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 0.5rem;
+}
+
+.simulador-actions button {
+  border: none;
+  border-radius: 0.75rem;
+  padding: 0.875rem 1.25rem;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.btn-secondary {
+  background: #334155;
+  color: #f8fafc;
+}
+
+.btn-primary {
+  background: #2563eb;
+  color: #ffffff;
+}
+
+.resultado-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  border-bottom: 1px solid #334155;
+  padding-bottom: 1rem;
+}
+
+.resultado-item span {
+  color: #cbd5e1;
+}
+
+.resultado-item strong {
+  font-size: 1.25rem;
+}
+
+.simulador-aviso {
+  color: #94a3b8;
+  line-height: 1.5;
+  margin: 0;
+}
+
+@media (max-width: 900px) {
+  .simulador-card {
+    grid-template-columns: 1fr;
+  }
+
+  .simulador-page {
+    padding: 1rem;
+  }
+
+  .simulador-intro h1 {
+    font-size: 2rem;
+  }
+}

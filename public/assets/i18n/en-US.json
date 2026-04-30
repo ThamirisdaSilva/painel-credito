@@ -49,12 +49,13 @@
     "DELETE": "Delete",
     "LOGOUT": "Sign out",
     "PROFILE": "Profile",
-    "ACTIVITIES": "Activities"
+    "ACTIVITIES": "Activities",
+    "SIMULATOR": "Credit Simulator"
   },
   "REQUEST": {
     "DATE": "Request Date"
   },
-    "SUMMARY": {
+  "SUMMARY": {
     "TOTAL_REQUESTS": "Total Requests",
     "APPROVED": "Approved",
     "PENDING": "Pending",
@@ -84,8 +85,24 @@
     "REQUEST_UPDATED": "Request updated successfully.",
     "STATUS_UPDATED": "Status updated successfully.",
     "REQUEST_DELETED": "Request deleted successfully."
-  }, 
+  },
   "CONFIRM": {
-  "DELETE_REQUEST": "Are you sure you want to delete this request?"
-}
+    "DELETE_REQUEST": "Are you sure you want to delete this request?"
+  },
+  "SIMULATOR": {
+    "TITLE": "Credit Simulator",
+    "DESCRIPTION": "Enter the amount, term and monthly rate to estimate the installment, total paid and interest.",
+    "PARAMETERS": "Simulation parameters",
+    "REQUESTED_VALUE": "Requested amount",
+    "TERM": "Term",
+    "MONTHS": "months",
+    "MONTHLY_INTEREST_RATE": "Monthly interest rate",
+    "RESET": "Reset",
+    "CREATE_REQUEST": "Create request",
+    "RESULT": "Simulation result",
+    "APPROX_INSTALLMENT": "Estimated installment",
+    "TOTAL_PAID": "Total paid",
+    "TOTAL_INTEREST": "Total interest",
+    "DISCLAIMER": "This simulation is only an estimate and does not represent credit approval."
+  }
 }
